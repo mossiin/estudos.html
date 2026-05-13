@@ -282,13 +282,142 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:var(--accent-primary)}
 
-/* RESPONSIVE */
+/* ── MOBILE HEADER ── */
+#mobile-header{display:none;position:fixed;top:0;left:0;right:0;height:54px;background:var(--bg-secondary);border-bottom:1px solid var(--border);z-index:200;align-items:center;padding:0 12px;gap:10px}
+#mobile-header .mh-menu{background:none;border:none;color:var(--text-primary);font-size:22px;cursor:pointer;padding:6px;border-radius:8px;display:flex;align-items:center;transition:background .15s}
+#mobile-header .mh-menu:active{background:var(--bg-card)}
+#mobile-header .mh-title{flex:1;font-size:15px;font-weight:700;color:var(--text-primary)}
+#mobile-header .mh-actions{display:flex;gap:6px}
+#mobile-header .mh-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:6px;border-radius:8px;color:var(--text-secondary);transition:background .15s}
+#mobile-header .mh-btn:active{background:var(--bg-card)}
+#mobile-header .mh-search-bar{display:none;position:absolute;top:54px;left:0;right:0;background:var(--bg-secondary);padding:8px 12px;border-bottom:1px solid var(--border)}
+#mobile-header .mh-search-bar input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text-primary);font-size:14px;outline:none}
+#mobile-header .mh-search-bar input:focus{border-color:var(--accent-primary)}
+#mobile-header .mh-search-bar.open{display:block}
+
+/* ── BOTTOM NAV ── */
+#bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:62px;padding-bottom:env(safe-area-inset-bottom,0);background:var(--bg-secondary);border-top:1px solid var(--border);z-index:200;align-items:stretch}
+.bn-tabs{display:flex;width:100%;height:62px}
+.bn-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:11px;font-weight:500;padding:6px 2px;transition:color .15s;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.bn-tab:active{background:var(--bg-card)}
+.bn-tab.active{color:var(--accent-light)}
+.bn-tab .bn-icon{font-size:20px;line-height:1}
+.bn-tab .bn-label{font-size:10px;font-weight:600}
+.bn-tab.more-tab{border-left:1px solid var(--border)}
+
+/* ── SIDEBAR OVERLAY (mobile) ── */
+#sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199;backdrop-filter:blur(2px)}
+#sidebar-overlay.open{display:block}
+
+/* ── POMODORO FAB ── */
+#pom-fab{display:none;position:fixed;bottom:76px;right:16px;z-index:190;width:52px;height:52px;border-radius:50%;background:var(--accent-primary);border:none;cursor:pointer;color:#fff;font-size:22px;box-shadow:0 4px 16px rgba(124,58,237,.5);align-items:center;justify-content:center;transition:transform .15s;-webkit-tap-highlight-color:transparent}
+#pom-fab:active{transform:scale(.92)}
+#pom-fab .fab-label{display:none}
+#pom-fab.running{background:var(--success);box-shadow:0 4px 16px rgba(16,185,129,.5);animation:fab-pulse 2s infinite}
+@keyframes fab-pulse{0%,100%{box-shadow:0 4px 16px rgba(16,185,129,.5)}50%{box-shadow:0 4px 24px rgba(16,185,129,.8),0 0 0 8px rgba(16,185,129,.15)}}
+
+/* ── POMODORO MODAL (mobile) ── */
+#pom-modal{display:none;position:fixed;inset:0;z-index:400;align-items:flex-end;justify-content:center}
+#pom-modal.open{display:flex}
+#pom-modal .pm-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+#pom-modal .pm-sheet{position:relative;width:100%;background:var(--bg-secondary);border-radius:20px 20px 0 0;padding:20px 20px calc(20px + env(safe-area-inset-bottom,0));animation:slideUp .25s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.pm-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 18px}
+.pm-close-btn{position:absolute;top:16px;right:16px;background:var(--bg-card);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:16px;color:var(--text-muted);display:flex;align-items:center;justify-content:center}
+.pm-title{text-align:center;font-size:16px;font-weight:700;margin-bottom:14px;color:var(--text-primary)}
+.pm-display-big{font-size:64px;font-weight:800;color:var(--accent-light);text-align:center;font-variant-numeric:tabular-nums;margin:0 0 8px;line-height:1}
+.pm-session-info{text-align:center;font-size:13px;color:var(--text-muted);margin-bottom:16px}
+.pm-modes-row{display:flex;gap:8px;margin-bottom:16px}
+.pm-mode-chip{flex:1;padding:8px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-muted);text-align:center;transition:all .15s}
+.pm-mode-chip.active{background:var(--accent-primary);color:#fff;border-color:var(--accent-primary)}
+.pm-btns-row{display:flex;gap:10px}
+.pm-action-btn{flex:1;padding:14px;border:none;border-radius:12px;cursor:pointer;font-size:15px;font-weight:700;transition:opacity .2s}
+.pm-action-btn.start{background:var(--accent-primary);color:#fff}
+.pm-action-btn.reset{background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary)}
+
+/* ── MOBILE LAYOUT RESPONSIVE ── */
 @media(max-width:768px){
-  #sidebar{transform:translateX(-100%)}
-  #sidebar.open{transform:translateX(0)}
-  #main{margin-left:0;padding:20px 16px}
+  /* Oculta o botão flutuante desktop */
+  .mobile-menu-btn{display:none !important}
+
+  /* Header e nav aparecem */
+  #mobile-header{display:flex}
+  #bottom-nav{display:flex}
+  #pom-fab{display:flex}
+
+  /* Oculta widgets da sidebar que ficam no FAB/header no mobile */
+  .pomodoro-widget{display:none}
+  .online-btn{display:none}
+  #online-toggle-btn{display:none}
+
+  /* Sidebar vira drawer sobre o conteúdo */
+  #sidebar{
+    transform:translateX(-100%);
+    z-index:210;
+    transition:transform .3s cubic-bezier(.4,0,.2,1);
+    box-shadow:none;
+  }
+  #sidebar.open{
+    transform:translateX(0);
+    box-shadow:4px 0 32px rgba(0,0,0,.4);
+  }
+
+  /* Main: sem margem lateral, padding para os dois navs */
+  #main{
+    margin-left:0;
+    padding:70px 14px 80px;
+    max-width:100%;
+  }
+
+  /* Conteúdo legível no mobile */
+  .section-header .info h2{font-size:18px}
+  .accordion-header{font-size:14px;padding:14px 14px}
+  .accordion-body{padding:0 14px 14px}
+  .accordion-body td,.accordion-body th{padding:6px 8px;font-size:12px}
+  .quiz-question{font-size:14px}
+  .quiz-options li{font-size:14px;padding:6px 0}
+  .reveal-btn{width:100%;padding:12px;font-size:14px}
+  .macetes-card{padding:14px}
+  .macetes-card li{font-size:14px}
+  .highlight-box{font-size:13px}
+  .schedule-grid{grid-template-columns:1fr 1fr}
+
+  /* Tabelas com scroll horizontal */
+  .accordion-body table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* Online panel full width no mobile */
+  #online-panel{width:100%;right:-100%}
+  #online-panel.open{right:0}
+
+  /* Page header */
+  .page-header h1{font-size:20px}
+  .page-header p{font-size:12px}
+
+  /* AI instructions block */
+  #ai-instructions-block{margin-bottom:18px}
+
+  /* Priority table scroll */
+  .priority-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* Seção header menor */
+  .section{margin-bottom:32px}
+  .section-header{margin-bottom:14px}
+  .section-header .emoji{font-size:24px}
+
+  /* Cards quiz body */
+  .quiz-card-body{padding:12px}
+}
+
+/* Desktop: oculta elementos só-mobile */
+@media(min-width:769px){
+  #mobile-header{display:none}
+  #bottom-nav{display:none}
+  #pom-fab{display:none}
+  #pom-modal{display:none !important}
+  #sidebar-overlay{display:none !important}
   .mobile-menu-btn{display:flex}
 }
+
 .mobile-menu-btn{display:none;position:fixed;top:14px;left:14px;z-index:200;background:var(--accent-primary);border:none;border-radius:8px;width:38px;height:38px;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:18px}
 
 /* ── POMODORO TIME SELECTOR ── */
@@ -339,7 +468,69 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 </head>
 <body>
 
-<button class="mobile-menu-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+<!-- MOBILE TOP HEADER -->
+<header id="mobile-header">
+  <button class="mh-menu" onclick="toggleMobileSidebar()" aria-label="Menu">☰</button>
+  <span class="mh-title">🏆 Guia Concurso</span>
+  <div class="mh-actions">
+    <button class="mh-btn" onclick="toggleMobileSearch()" aria-label="Buscar">🔍</button>
+    <button class="mh-btn" onclick="toggleTheme()" aria-label="Tema">🌙</button>
+    <button class="mh-btn" onclick="toggleOnlinePanel()" aria-label="Online">🌐</button>
+  </div>
+  <div class="mh-search-bar" id="mobile-search-bar">
+    <input type="text" placeholder="Buscar tópico..." oninput="filterSearch(this.value)" autofocus>
+  </div>
+</header>
+
+<!-- SIDEBAR OVERLAY -->
+<div id="sidebar-overlay" onclick="closeMobileSidebar()"></div>
+
+<!-- BOTTOM NAVIGATION -->
+<nav id="bottom-nav">
+  <div class="bn-tabs">
+    <a class="bn-tab" href="#portugues" onclick="bnNav(this)">
+      <span class="bn-icon">📝</span><span class="bn-label">Portug.</span>
+    </a>
+    <a class="bn-tab" href="#matematica" onclick="bnNav(this)">
+      <span class="bn-icon">🔢</span><span class="bn-label">Matem.</span>
+    </a>
+    <a class="bn-tab" href="#informatica" onclick="bnNav(this)">
+      <span class="bn-icon">💻</span><span class="bn-label">Inform.</span>
+    </a>
+    <a class="bn-tab" href="#constitucional" onclick="bnNav(this)">
+      <span class="bn-icon">⚖️</span><span class="bn-label">Direito</span>
+    </a>
+    <button class="bn-tab more-tab" onclick="toggleMobileSidebar()">
+      <span class="bn-icon">☰</span><span class="bn-label">Mais</span>
+    </button>
+  </div>
+</nav>
+
+<!-- POMODORO FAB -->
+<button id="pom-fab" onclick="openPomModal()" aria-label="Pomodoro">⏱</button>
+
+<!-- POMODORO MODAL (mobile) -->
+<div id="pom-modal">
+  <div class="pm-backdrop" onclick="closePomModal()"></div>
+  <div class="pm-sheet">
+    <div class="pm-handle"></div>
+    <button class="pm-close-btn" onclick="closePomModal()">✕</button>
+    <div class="pm-title">⏱ Pomodoro</div>
+    <div class="pm-modes-row">
+      <button class="pm-mode-chip active" onclick="setPomMode(25,this)">25 min</button>
+      <button class="pm-mode-chip" onclick="setPomMode(35,this)">35 min</button>
+      <button class="pm-mode-chip" onclick="setPomMode(50,this)">50 min</button>
+    </div>
+    <div class="pm-display-big" id="pom-display-modal">25:00</div>
+    <div class="pm-session-info" id="pom-session-modal">Sessão 1 de 4</div>
+    <div class="pm-btns-row">
+      <button class="pm-action-btn start" id="pom-modal-start" onclick="togglePomodoro()">▶ Iniciar</button>
+      <button class="pm-action-btn reset" onclick="resetPomodoro()">↺ Reset</button>
+    </div>
+  </div>
+</div>
+
+<button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰</button>
 
 <!-- SIDEBAR -->
 <nav id="sidebar">
@@ -1694,19 +1885,35 @@ let pomSession = 1;
 
 function setPomMode(minutes, btn) {
   if (pomRunning) return;
-  document.querySelectorAll('.pom-mode-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  // Sincroniza chips em ambas as UIs (sidebar + modal)
+  document.querySelectorAll('.pom-mode-btn, .pm-mode-chip').forEach(b => b.classList.remove('active'));
+  // Marca o chip irmão na outra UI com o mesmo tempo
+  document.querySelectorAll(`.pom-mode-btn, .pm-mode-chip`).forEach(b => {
+    if (b.textContent.trim().startsWith(String(minutes))) b.classList.add('active');
+  });
   pomDuration = minutes * 60;
   pomSeconds = pomDuration;
   pomSession = 1;
   updatePomDisplay();
-  document.getElementById('pom-session').textContent = 'Sessão 1 de 4';
+  const sessionText = 'Sessão 1 de 4';
+  const s1 = document.getElementById('pom-session');
+  const s2 = document.getElementById('pom-session-modal');
+  if (s1) s1.textContent = sessionText;
+  if (s2) s2.textContent = sessionText;
 }
 
 function updatePomDisplay() {
   const m = Math.floor(pomSeconds / 60).toString().padStart(2, '0');
   const s = (pomSeconds % 60).toString().padStart(2, '0');
-  document.getElementById('pom-display').textContent = m + ':' + s;
+  const text = m + ':' + s;
+  // Atualiza sidebar (desktop) e modal (mobile) em paralelo
+  const d1 = document.getElementById('pom-display');
+  const d2 = document.getElementById('pom-display-modal');
+  if (d1) d1.textContent = text;
+  if (d2) d2.textContent = text;
+  // Atualiza label do FAB quando o timer está rodando
+  const fab = document.getElementById('pom-fab');
+  if (fab) fab.setAttribute('aria-label', text);
 }
 
 function pomBeep() {
@@ -1729,28 +1936,36 @@ function pomBeep() {
 }
 
 function togglePomodoro() {
-  const btn = document.querySelector('.pom-btn.start');
+  // Atualiza botões em ambas as UIs (sidebar + modal)
+  const btns = [document.querySelector('.pom-btn.start'), document.getElementById('pom-modal-start')];
   if (!pomRunning) {
     pomRunning = true;
-    btn.textContent = '⏸ Pausar';
+    btns.forEach(b => { if (b) b.textContent = '⏸ Pausar' });
+    document.getElementById('pom-fab')?.classList.add('running');
     pomInterval = setInterval(() => {
       pomSeconds--;
       updatePomDisplay();
       if (pomSeconds <= 0) {
         clearInterval(pomInterval);
         pomRunning = false;
-        btn.textContent = '▶ Iniciar';
+        btns.forEach(b => { if (b) b.textContent = '▶ Iniciar' });
+        document.getElementById('pom-fab')?.classList.remove('running');
         pomBeep();
         pomSession = pomSession < 4 ? pomSession + 1 : 1;
         pomSeconds = pomDuration;
         updatePomDisplay();
-        document.getElementById('pom-session').textContent = 'Sessão ' + pomSession + ' de 4';
+        const sessionText = 'Sessão ' + pomSession + ' de 4';
+        const s1 = document.getElementById('pom-session');
+        const s2 = document.getElementById('pom-session-modal');
+        if (s1) s1.textContent = sessionText;
+        if (s2) s2.textContent = sessionText;
       }
     }, 1000);
   } else {
     clearInterval(pomInterval);
     pomRunning = false;
-    btn.textContent = '▶ Iniciar';
+    btns.forEach(b => { if (b) b.textContent = '▶ Iniciar' });
+    document.getElementById('pom-fab')?.classList.remove('running');
   }
 }
 
@@ -1760,9 +1975,67 @@ function resetPomodoro() {
   pomSeconds = pomDuration;
   pomSession = 1;
   updatePomDisplay();
-  document.querySelector('.pom-btn.start').textContent = '▶ Iniciar';
-  document.getElementById('pom-session').textContent = 'Sessão 1 de 4';
+  const btns = [document.querySelector('.pom-btn.start'), document.getElementById('pom-modal-start')];
+  btns.forEach(b => { if (b) b.textContent = '▶ Iniciar' });
+  const s1 = document.getElementById('pom-session');
+  const s2 = document.getElementById('pom-session-modal');
+  if (s1) s1.textContent = 'Sessão 1 de 4';
+  if (s2) s2.textContent = 'Sessão 1 de 4';
+  document.getElementById('pom-fab')?.classList.remove('running');
 }
+
+// ── POMODORO MODAL ──
+function openPomModal() {
+  document.getElementById('pom-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePomModal() {
+  document.getElementById('pom-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── MOBILE NAV ──
+function toggleMobileSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  const isOpen = sidebar.classList.contains('open');
+  sidebar.classList.toggle('open', !isOpen);
+  overlay.classList.toggle('open', !isOpen);
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+
+function closeMobileSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function toggleMobileSearch() {
+  const bar = document.getElementById('mobile-search-bar');
+  const isOpen = bar.classList.contains('open');
+  bar.classList.toggle('open', !isOpen);
+  if (!isOpen) bar.querySelector('input').focus();
+  else { bar.querySelector('input').value = ''; filterSearch(''); }
+}
+
+function bnNav(el) {
+  // Fecha sidebar se estiver aberta e marca tab ativa
+  closeMobileSidebar();
+  document.querySelectorAll('.bn-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Swipe para fechar a sidebar no mobile
+(function initSwipe() {
+  let startX = 0;
+  document.addEventListener('touchstart', e => { startX = e.touches[0].clientX }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    const sidebar = document.getElementById('sidebar');
+    // Swipe para a esquerda (> 60px) fecha a sidebar
+    if (dx < -60 && sidebar.classList.contains('open')) closeMobileSidebar();
+  }, { passive: true });
+})();
 
 // ── ONLINE MODE ──
 function toggleOnlinePanel() {
@@ -1991,17 +2264,20 @@ async function loadApiConcursos(signal) {
     loadApiConcursos(ctrl.signal)
   })
 
-  // Highlight active nav on scroll
+  // Highlight active nav on scroll (sidebar + bottom nav)
   const sections = document.querySelectorAll('.section[id]');
   const navItems = document.querySelectorAll('.nav-item');
+  const bnTabs = document.querySelectorAll('.bn-tab[href]');
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(sec => {
-      if (window.scrollY >= sec.offsetTop - 80) current = sec.id;
+      if (window.scrollY >= sec.offsetTop - 90) current = sec.id;
     });
     navItems.forEach(item => {
-      const href = item.getAttribute('href');
-      item.classList.toggle('active', href === '#' + current);
+      item.classList.toggle('active', item.getAttribute('href') === '#' + current);
+    });
+    bnTabs.forEach(tab => {
+      tab.classList.toggle('active', tab.getAttribute('href') === '#' + current);
     });
   }, { passive: true });
 })();
