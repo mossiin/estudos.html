@@ -1,0 +1,17 @@
+{
+  "crons": [
+    {
+      "path": "/api/sync/atualidades",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/sync/concursos",
+      "schedule": "0 */6 * * *"
+    }
+  ],
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 30
+    }
+  }
+}

@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia Concurso Público 2026</title>
+
+<!--
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  INSTRUÇÕES PARA IA — LEIA ANTES DE QUALQUER TAREFA                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+Se você é uma IA lendo este arquivo, saiba:
+
+DONO DO ARQUIVO: Lucas — estudando para concursos públicos brasileiros.
+OBJETIVO: passar em concurso público (nível médio ou superior, sem banca definida).
+ÚLTIMA ATUALIZAÇÃO: maio de 2026.
+
+━━━ O QUE ESTE ARQUIVO É ━━━
+Guia de estudos self-contained (HTML+CSS+JS, sem dependências externas obrigatórias).
+Contém 9 matérias, macetes, questões de exemplo com gabarito, cronograma e dicas de prova.
+Cobre as bancas: CESPE/CEBRASPE, FCC, FGV, VUNESP, FUNDATEC.
+
+━━━ ESTRUTURA DO DOCUMENTO ━━━
+Cada matéria é uma <div class="section" id="[id]">
+Os IDs das seções são: portugues, matematica, informatica, constitucional,
+administrativo, geografia, historia, atualidades, ciencias, cronograma, dicas, concursos
+
+Dentro de cada seção:
+- .accordion-header / .accordion-body → tópicos expansíveis com teoria
+- .macetes-card → lista de macetes (atalhos mentais)
+- .quiz-card → questão com gabarito oculto (.quiz-answer)
+
+━━━ COMO COMPLEMENTAR ESTE GUIA (tarefas que a IA pode fazer) ━━━
+
+1. ADICIONAR QUESTÕES:
+   Copie um bloco <div class="quiz-card"> existente.
+   Troque o texto da .quiz-question, os <li data-opt="X)"> e o conteúdo do .quiz-answer.
+   Adicione onclick="revealAnswer('[id-único]')" no .reveal-btn e id="[id-único]" no .quiz-answer.
+
+2. ADICIONAR TÓPICO NUM ACCORDION:
+   Copie um bloco <div class="card"> com .accordion-header e .accordion-body.
+   Use um ID único para o accordion (ex: 'pt-novo-topico') e crie o arrow ID como 'arr-pt-novo-topico'.
+
+3. ATUALIZAR ATUALIDADES:
+   Edite a seção id="atualidades". Atualize as listas dentro dos .accordion-body.
+   Mantenha a seção "Concursos Públicos — Panorama" sempre com os concursos mais recentes.
+
+4. ADICIONAR NOVA MATÉRIA:
+   Copie uma seção completa (ex: id="ciencias").
+   Troque o id, o emoji, o título no .section-header.
+   Adicione um <a class="nav-item"> correspondente dentro de #sidebar .sidebar-nav.
+
+5. ATUALIZAR CRONOGRAMA:
+   Edite os .schedule-card dentro da id="cronograma".
+
+6. PESQUISA DE QUESTÕES:
+   Para buscar questões reais, use QConcursos (qconcursos.com) filtrando por banca e matéria.
+   Para lei seca: planalto.gov.br tem todos os textos oficiais.
+   Para atualidades: agenciabrasil.ebc.com.br é a fonte mais confiável.
+
+━━━ REGRAS DE ESTILO ━━━
+- Não adicionar comentários explicando O QUE o código faz, apenas o POR QUÊ quando não óbvio
+- Manter o padrão de CSS variables (--bg-primary, --accent-primary, etc.)
+- Respostas de quiz sempre no formato: <strong>Resposta: X</strong> — explicação concisa
+- Macetes sempre começam com negrito indicando o conceito: <strong>Nome do macete:</strong>
+- IDs de accordion: [sigla-materia]-[topico] ex: pt-crase, mat-juros, dc-art5
+
+━━━ PRIORIDADE DE MATÉRIAS (para o Lucas) ━━━
+1. Português (813/1000 concursos) — MÁXIMA PRIORIDADE
+2. Matemática/Lógica (582/1000)
+3. Informática (554/1000)
+4. Dir. Administrativo (578/1000)
+5. Dir. Constitucional (508/1000)
+Demais: apoio contextual
+
+━━━ DICA PARA EXPANDIR CONTEÚDO ━━━
+Os tópicos com menos conteúdo (Ciências, História) são bons candidatos para expansão.
+Informática precisa de mais questões FUNDATEC com imagens de tela descritas em texto.
+Matemática pode receber mais questões de PA/PG e estatística.
+
+-->
+<script type="application/json" id="ai-context">{
+  "file_type": "guia-concurso-publico-html",
+  "owner": "Lucas",
+  "goal": "passar em concurso público brasileiro",
+  "last_updated": "2026-05-13",
+  "bancas_cobertas": ["CESPE/CEBRASPE","FCC","FGV","VUNESP","FUNDATEC"],
+  "materias": [
+    {"id":"portugues","label":"Língua Portuguesa","freq":813,"priority":1},
+    {"id":"matematica","label":"Matemática e Raciocínio Lógico","freq":582,"priority":2},
+    {"id":"informatica","label":"Informática","freq":554,"priority":3},
+    {"id":"administrativo","label":"Direito Administrativo","freq":578,"priority":4},
+    {"id":"constitucional","label":"Direito Constitucional","freq":508,"priority":5},
+    {"id":"geografia","label":"Geografia do Brasil","freq":null,"priority":6},
+    {"id":"historia","label":"História do Brasil","freq":null,"priority":7},
+    {"id":"atualidades","label":"Atualidades","freq":null,"priority":8},
+    {"id":"ciencias","label":"Ciências","freq":null,"priority":9}
+  ],
+  "fontes_pesquisa": {
+    "questoes": ["qconcursos.com","tecconcursos.com.br"],
+    "aulas": ["estrategiaconcursos.com.br","grancursosonline.com.br"],
+    "lei_seca": ["planalto.gov.br"],
+    "atualidades": ["agenciabrasil.ebc.com.br","senado.leg.br/noticias"],
+    "concursos": ["acheconcursos.com.br","estrategiaconcursos.com.br/blog/concursos-2026"]
+  },
+  "tarefas_comuns_ia": [
+    "adicionar questões de exemplo a uma matéria",
+    "adicionar novo tópico em accordion",
+    "atualizar seção de atualidades",
+    "criar nova seção de matéria",
+    "expandir macetes",
+    "adicionar conteúdo de banca específica"
+  ],
+  "convencoes_html": {
+    "accordion_id": "[sigla]-[topico] ex: pt-crase",
+    "arrow_id": "arr-[sigla]-[topico]",
+    "quiz_answer_id": "[sigla]-q[n] ex: pt-q5",
+    "secao_id": "[nome-curto] ex: portugues"
+  }
+}</script>
+<style>
+:root {
+  --bg-primary: #0d0f1a;
+  --bg-secondary: #161929;
+  --bg-card: #1e2235;
+  --bg-card-hover: #252840;
+  --accent-primary: #7c3aed;
+  --accent-light: #a78bfa;
+  --accent-glow: rgba(124,58,237,0.25);
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --border: #2d3748;
+  --sidebar-width: 280px;
+  --radius: 10px;
+}
+[data-theme="light"] {
+  --bg-primary: #f1f5f9;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --border: #e2e8f0;
+  --accent-glow: rgba(124,58,237,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg-primary);color:var(--text-primary);display:flex;min-height:100vh;font-size:15px;line-height:1.6}
+
+/* ── SIDEBAR ── */
+#sidebar{width:var(--sidebar-width);min-width:var(--sidebar-width);background:var(--bg-secondary);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:100;transition:transform .3s}
+.sidebar-logo{padding:20px 18px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
+.sidebar-logo span.icon{font-size:28px}
+.sidebar-logo .title{font-size:16px;font-weight:700;color:var(--text-primary);line-height:1.2}
+.sidebar-logo .subtitle{font-size:11px;color:var(--text-muted)}
+
+.sidebar-search{padding:12px 14px;border-bottom:1px solid var(--border)}
+.sidebar-search input{width:100%;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text-primary);font-size:13px;outline:none;transition:border-color .2s}
+.sidebar-search input:focus{border-color:var(--accent-primary)}
+.sidebar-search input::placeholder{color:var(--text-muted)}
+
+.sidebar-nav{padding:8px 0;flex:1}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 18px;cursor:pointer;border-radius:0;transition:background .15s,color .15s;color:var(--text-secondary);font-size:14px;text-decoration:none;border-left:3px solid transparent}
+.nav-item:hover{background:var(--bg-card);color:var(--text-primary)}
+.nav-item.active{background:var(--accent-glow);color:var(--accent-light);border-left-color:var(--accent-primary)}
+.nav-item .emoji{font-size:16px;width:22px;text-align:center}
+
+/* POMODORO */
+.pomodoro-widget{margin:12px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;border-bottom:none}
+.pomodoro-title{font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.pomodoro-display{font-size:32px;font-weight:700;color:var(--accent-light);text-align:center;font-variant-numeric:tabular-nums;margin-bottom:10px}
+.pomodoro-btns{display:flex;gap:6px}
+.pom-btn{flex:1;padding:6px 0;border:none;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;transition:opacity .2s}
+.pom-btn.start{background:var(--accent-primary);color:#fff}
+.pom-btn.reset{background:var(--border);color:var(--text-secondary)}
+.pom-btn:hover{opacity:.85}
+.pom-session{font-size:11px;color:var(--text-muted);text-align:center;margin-top:6px}
+
+/* THEME TOGGLE */
+.theme-btn{margin:0 14px 14px;padding:8px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;cursor:pointer;color:var(--text-secondary);font-size:13px;text-align:center;transition:background .2s}
+.theme-btn:hover{background:var(--bg-card-hover);color:var(--text-primary)}
+
+/* ── MAIN ── */
+#main{margin-left:var(--sidebar-width);flex:1;padding:28px 36px;max-width:1100px}
+.page-header{margin-bottom:32px}
+.page-header h1{font-size:26px;font-weight:800;color:var(--text-primary);margin-bottom:6px}
+.page-header p{color:var(--text-secondary);font-size:14px}
+
+/* SECTION */
+.section{margin-bottom:48px;scroll-margin-top:24px}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--border)}
+.section-header .emoji{font-size:32px}
+.section-header .info h2{font-size:22px;font-weight:700;margin-bottom:2px}
+.section-header .info .badge{display:inline-block;background:var(--accent-glow);color:var(--accent-light);border:1px solid var(--accent-primary);border-radius:20px;padding:2px 10px;font-size:12px;font-weight:600}
+
+/* CARD */
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;transition:border-color .2s}
+.card:hover{border-color:var(--accent-primary)}
+
+/* ACCORDION */
+.accordion-header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer;font-weight:600;font-size:15px;user-select:none;transition:background .15s}
+.accordion-header:hover{background:var(--bg-card-hover)}
+.accordion-arrow{color:var(--accent-light);transition:transform .25s;font-size:13px}
+.accordion-body{display:none;padding:0 18px 16px;border-top:1px solid var(--border)}
+.accordion-body.open{display:block}
+.accordion-arrow.open{transform:rotate(180deg)}
+
+.accordion-body p,.accordion-body li{color:var(--text-secondary);font-size:14px;line-height:1.7}
+.accordion-body ul,.accordion-body ol{padding-left:20px;margin:8px 0}
+.accordion-body strong{color:var(--text-primary)}
+.accordion-body table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px}
+.accordion-body th{background:var(--bg-secondary);color:var(--accent-light);padding:8px 10px;text-align:left;font-weight:600;border:1px solid var(--border)}
+.accordion-body td{padding:7px 10px;border:1px solid var(--border);color:var(--text-secondary)}
+.accordion-body tr:nth-child(even) td{background:var(--bg-secondary)}
+.accordion-body code{background:var(--bg-secondary);color:var(--accent-light);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:13px}
+.accordion-body pre{background:var(--bg-secondary);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;font-family:monospace;font-size:13px;color:var(--text-secondary);margin:10px 0}
+
+/* MACETES CARD */
+.macetes-card{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(167,139,250,.08));border:1px solid var(--accent-primary);border-radius:var(--radius);padding:18px 20px;margin-bottom:12px}
+.macetes-card h3{color:var(--accent-light);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.macetes-card ul{list-style:none;padding:0}
+.macetes-card li{color:var(--text-secondary);font-size:14px;padding:5px 0;border-bottom:1px solid rgba(124,58,237,.15);display:flex;gap:8px;align-items:flex-start}
+.macetes-card li:last-child{border-bottom:none}
+.macetes-card li::before{content:"⚡";font-size:12px;margin-top:3px;flex-shrink:0}
+.macetes-card strong{color:var(--text-primary)}
+
+/* QUIZ CARDS */
+.quiz-section{margin-top:16px}
+.quiz-section h3{font-size:14px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.quiz-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.quiz-card-body{padding:14px 16px}
+.quiz-question{font-weight:600;color:var(--text-primary);font-size:14px;margin-bottom:10px}
+.quiz-banca{font-size:11px;color:var(--accent-light);background:var(--accent-glow);padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:8px}
+.quiz-options{list-style:none;padding:0;margin-bottom:10px}
+.quiz-options li{padding:5px 0;color:var(--text-secondary);font-size:14px}
+.quiz-options li::before{content:attr(data-opt)"  ";font-weight:700;color:var(--text-muted)}
+.reveal-btn{background:var(--accent-primary);color:#fff;border:none;border-radius:6px;padding:7px 16px;cursor:pointer;font-size:13px;font-weight:600;transition:opacity .2s}
+.reveal-btn:hover{opacity:.85}
+.quiz-answer{display:none;margin-top:12px;padding:12px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:8px;font-size:14px;color:var(--text-secondary);animation:fadeIn .3s ease}
+.quiz-answer.visible{display:block}
+.quiz-answer strong{color:var(--success)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+
+/* CRONOGRAMA */
+.schedule-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:8px}
+.schedule-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+.schedule-card .day{font-weight:700;color:var(--accent-light);margin-bottom:6px;font-size:14px}
+.schedule-card .subject{color:var(--text-secondary);font-size:13px;margin-bottom:4px}
+.schedule-card .hours{font-size:12px;color:var(--text-muted)}
+
+/* PRIORITY TABLE */
+.priority-table{width:100%;border-collapse:collapse;font-size:14px}
+.priority-table th{background:var(--accent-primary);color:#fff;padding:10px 12px;text-align:left;font-weight:600}
+.priority-table td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text-secondary)}
+.priority-table tr:hover td{background:var(--bg-card-hover)}
+.rank-badge{display:inline-block;width:24px;height:24px;border-radius:50%;background:var(--accent-glow);color:var(--accent-light);font-weight:700;text-align:center;line-height:24px;font-size:12px}
+
+/* PROGRESS */
+.progress-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.progress-item:last-child{border-bottom:none}
+.progress-item input[type="checkbox"]{width:16px;height:16px;accent-color:var(--accent-primary);cursor:pointer}
+.progress-item label{color:var(--text-secondary);font-size:14px;cursor:pointer}
+.progress-item input:checked+label{text-decoration:line-through;color:var(--text-muted)}
+
+/* HIGHLIGHT BOX */
+.highlight-box{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:14px 16px;margin:10px 0;font-size:14px;color:var(--text-secondary)}
+.highlight-box strong{color:var(--warning)}
+
+/* NO RESULTS */
+.no-results{display:none;text-align:center;padding:60px 20px;color:var(--text-muted)}
+.no-results.visible{display:block}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent-primary)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding:20px 16px}
+  .mobile-menu-btn{display:flex}
+}
+.mobile-menu-btn{display:none;position:fixed;top:14px;left:14px;z-index:200;background:var(--accent-primary);border:none;border-radius:8px;width:38px;height:38px;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:18px}
+
+/* ── POMODORO TIME SELECTOR ── */
+.pom-modes{display:flex;gap:4px;margin-bottom:10px}
+.pom-mode-btn{flex:1;padding:4px 0;background:var(--bg-secondary);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:11px;font-weight:600;color:var(--text-muted);transition:all .15s}
+.pom-mode-btn.active{background:var(--accent-primary);color:#fff;border-color:var(--accent-primary)}
+.pom-mode-btn:hover:not(.active){border-color:var(--accent-light);color:var(--accent-light)}
+
+/* ── ONLINE MODE BUTTON ── */
+.online-btn{margin:0 14px 8px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:13px;text-align:center;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--bg-card);color:var(--text-secondary)}
+.online-btn:hover{border-color:var(--success);color:var(--success)}
+.online-btn.active{background:rgba(16,185,129,.12);border-color:var(--success);color:var(--success)}
+.online-dot{width:8px;height:8px;border-radius:50%;background:var(--text-muted);flex-shrink:0;transition:background .2s}
+.online-btn.active .online-dot{background:var(--success);box-shadow:0 0 6px var(--success)}
+
+/* ── ONLINE PANEL (drawer lateral) ── */
+#online-panel{position:fixed;top:0;right:-420px;width:400px;height:100vh;background:var(--bg-secondary);border-left:1px solid var(--border);z-index:300;overflow-y:auto;transition:right .3s ease;display:flex;flex-direction:column}
+#online-panel.open{right:0}
+.op-header{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.op-header h3{font-size:16px;font-weight:700;color:var(--text-primary)}
+.op-close{background:none;border:none;color:var(--text-muted);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:color .2s}
+.op-close:hover{color:var(--text-primary)}
+.op-body{padding:16px;flex:1}
+.op-group{margin-bottom:20px}
+.op-group h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-light);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.op-link{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:8px;text-decoration:none;color:var(--text-secondary);font-size:13px;transition:background .15s;border:1px solid transparent;margin-bottom:4px}
+.op-link:hover{background:var(--bg-card);border-color:var(--border);color:var(--text-primary)}
+.op-link .ol{font-size:16px;flex-shrink:0;margin-top:1px}
+.op-link .ot{display:flex;flex-direction:column;gap:2px}
+.op-link .ot strong{color:var(--text-primary);font-size:13px}
+.op-link .ot span{font-size:11px;color:var(--text-muted)}
+.op-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:299}
+.op-overlay.open{display:block}
+
+/* ── AI INSTRUCTIONS BLOCK ── */
+#ai-instructions-block{background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(16,185,129,.04));border:1px solid rgba(16,185,129,.3);border-radius:var(--radius);margin-bottom:28px;overflow:hidden}
+#ai-instructions-block summary{padding:12px 16px;cursor:pointer;font-size:13px;font-weight:600;color:rgba(16,185,129,.9);list-style:none;display:flex;align-items:center;gap:8px;user-select:none}
+#ai-instructions-block summary::-webkit-details-marker{display:none}
+#ai-instructions-block summary::after{content:"▼";font-size:11px;margin-left:auto;transition:transform .2s;color:var(--text-muted)}
+#ai-instructions-block[open] summary::after{transform:rotate(180deg)}
+#ai-instructions-block .ai-body{padding:0 16px 16px;border-top:1px solid rgba(16,185,129,.2)}
+#ai-instructions-block .ai-body p{font-size:13px;color:var(--text-secondary);margin:8px 0}
+#ai-instructions-block .ai-body ul{font-size:13px;color:var(--text-secondary);padding-left:18px}
+#ai-instructions-block .ai-body li{margin:4px 0}
+#ai-instructions-block .ai-body strong{color:var(--text-primary)}
+#ai-instructions-block .ai-body code{background:var(--bg-card);color:rgba(16,185,129,.9);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px}
+</style>
+</head>
+<body>
+
+<button class="mobile-menu-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <span class="icon">🏆</span>
+    <div>
+      <div class="title">Guia Concurso</div>
+      <div class="subtitle">Público Brasileiro 2026</div>
+    </div>
+  </div>
+
+  <div class="sidebar-search">
+    <input type="text" id="search-input" placeholder="🔍 Buscar tópico..." oninput="filterSearch(this.value)">
+  </div>
+
+  <div class="sidebar-nav">
+    <a class="nav-item active" href="#portugues" onclick="setActive(this)"><span class="emoji">📝</span>Português</a>
+    <a class="nav-item" href="#matematica" onclick="setActive(this)"><span class="emoji">🔢</span>Matemática</a>
+    <a class="nav-item" href="#informatica" onclick="setActive(this)"><span class="emoji">💻</span>Informática</a>
+    <a class="nav-item" href="#constitucional" onclick="setActive(this)"><span class="emoji">⚖️</span>Direito Constitucional</a>
+    <a class="nav-item" href="#administrativo" onclick="setActive(this)"><span class="emoji">🏛️</span>Direito Administrativo</a>
+    <a class="nav-item" href="#geografia" onclick="setActive(this)"><span class="emoji">🌎</span>Geografia</a>
+    <a class="nav-item" href="#historia" onclick="setActive(this)"><span class="emoji">📚</span>História</a>
+    <a class="nav-item" href="#atualidades" onclick="setActive(this)"><span class="emoji">📰</span>Atualidades</a>
+    <a class="nav-item" href="#ciencias" onclick="setActive(this)"><span class="emoji">🧪</span>Ciências</a>
+    <a class="nav-item" href="#cronograma" onclick="setActive(this)"><span class="emoji">📅</span>Cronograma</a>
+    <a class="nav-item" href="#dicas" onclick="setActive(this)"><span class="emoji">🎯</span>Dicas de Prova</a>
+    <a class="nav-item" href="#concursos" onclick="setActive(this)"><span class="emoji">🔔</span>Concursos Abertos</a>
+  </div>
+
+  <div class="pomodoro-widget">
+    <div class="pomodoro-title">⏱ Pomodoro</div>
+    <div class="pom-modes">
+      <button class="pom-mode-btn active" onclick="setPomMode(25,this)">25min</button>
+      <button class="pom-mode-btn" onclick="setPomMode(35,this)">35min</button>
+      <button class="pom-mode-btn" onclick="setPomMode(50,this)">50min</button>
+    </div>
+    <div class="pomodoro-display" id="pom-display">25:00</div>
+    <div class="pomodoro-btns">
+      <button class="pom-btn start" onclick="togglePomodoro()">▶ Iniciar</button>
+      <button class="pom-btn reset" onclick="resetPomodoro()">↺ Reset</button>
+    </div>
+    <div class="pom-session" id="pom-session">Sessão 1 de 4</div>
+  </div>
+
+  <button class="online-btn" id="online-toggle-btn" onclick="toggleOnlinePanel()">
+    <span class="online-dot"></span>Modo Online
+  </button>
+
+  <div style="margin:0 14px 8px;padding:7px 10px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-muted)">
+    <span id="api-status-dot" style="width:8px;height:8px;border-radius:50%;background:var(--text-muted);flex-shrink:0;transition:all .3s"></span>
+    <span id="api-status-label">Verificando API...</span>
+  </div>
+
+  <button class="theme-btn" onclick="toggleTheme()">🌙 Alternar tema</button>
+</nav>
+
+<!-- ONLINE PANEL OVERLAY -->
+<div class="op-overlay" id="op-overlay" onclick="closeOnlinePanel()"></div>
+
+<!-- ONLINE PANEL -->
+<div id="online-panel">
+  <div class="op-header">
+    <h3>🌐 Recursos Online</h3>
+    <button class="op-close" onclick="closeOnlinePanel()">✕</button>
+  </div>
+  <div class="op-body">
+
+    <div class="op-group">
+      <h4>📚 Banco de questões</h4>
+      <a class="op-link" href="https://www.qconcursos.com" target="_blank" rel="noopener">
+        <span class="ol">🎯</span><div class="ot"><strong>QConcursos</strong><span>Filtrar por banca, matéria e ano</span></div>
+      </a>
+      <a class="op-link" href="https://www.tecconcursos.com.br" target="_blank" rel="noopener">
+        <span class="ol">📝</span><div class="ot"><strong>Tec Concursos</strong><span>Simulados e questões comentadas</span></div>
+      </a>
+    </div>
+
+    <div class="op-group">
+      <h4>🎓 Aulas e resumos</h4>
+      <a class="op-link" href="https://www.estrategiaconcursos.com.br" target="_blank" rel="noopener">
+        <span class="ol">📖</span><div class="ot"><strong>Estratégia Concursos</strong><span>Aulas gratuitas por matéria</span></div>
+      </a>
+      <a class="op-link" href="https://www.grancursosonline.com.br" target="_blank" rel="noopener">
+        <span class="ol">🎬</span><div class="ot"><strong>Gran Cursos Online</strong><span>Videoaulas e material gratuito</span></div>
+      </a>
+      <a class="op-link" href="https://www.youtube.com/@estrategiaconcursos" target="_blank" rel="noopener">
+        <span class="ol">▶️</span><div class="ot"><strong>YouTube — Estratégia</strong><span>Canal gratuito com aulas ao vivo</span></div>
+      </a>
+    </div>
+
+    <div class="op-group">
+      <h4>⚖️ Lei seca (texto oficial)</h4>
+      <a class="op-link" href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" rel="noopener">
+        <span class="ol">📜</span><div class="ot"><strong>Constituição Federal/88</strong><span>Texto integral atualizado</span></div>
+      </a>
+      <a class="op-link" href="https://www.planalto.gov.br/ccivil_03/leis/l8112cons.htm" target="_blank" rel="noopener">
+        <span class="ol">👔</span><div class="ot"><strong>Lei 8.112/1990</strong><span>Estatuto dos Servidores Federais</span></div>
+      </a>
+      <a class="op-link" href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm" target="_blank" rel="noopener">
+        <span class="ol">🏛️</span><div class="ot"><strong>Lei 14.133/2021</strong><span>Nova Lei de Licitações</span></div>
+      </a>
+    </div>
+
+    <div class="op-group">
+      <h4>📰 Atualidades confiáveis</h4>
+      <a class="op-link" href="https://agenciabrasil.ebc.com.br" target="_blank" rel="noopener">
+        <span class="ol">🇧🇷</span><div class="ot"><strong>Agência Brasil</strong><span>Notícias oficiais do governo federal</span></div>
+      </a>
+      <a class="op-link" href="https://www12.senado.leg.br/noticias" target="_blank" rel="noopener">
+        <span class="ol">🏛️</span><div class="ot"><strong>Agência Senado</strong><span>Legislação e notícias parlamentares</span></div>
+      </a>
+      <a class="op-link" href="https://noticias.uol.com.br" target="_blank" rel="noopener">
+        <span class="ol">🗞️</span><div class="ot"><strong>UOL Notícias</strong><span>Portal de notícias geral</span></div>
+      </a>
+    </div>
+
+    <div class="op-group">
+      <h4>🔔 Concursos abertos</h4>
+      <a class="op-link" href="https://www.estrategiaconcursos.com.br/blog/concursos-2026/" target="_blank" rel="noopener">
+        <span class="ol">📅</span><div class="ot"><strong>Concursos 2026</strong><span>Calendário Estratégia</span></div>
+      </a>
+      <a class="op-link" href="https://folha.qconcursos.com/n/concursos-abertos-2026" target="_blank" rel="noopener">
+        <span class="ol">📋</span><div class="ot"><strong>Concursos abertos</strong><span>QConcursos — lista atualizada</span></div>
+      </a>
+      <a class="op-link" href="https://www.acheconcursos.com.br" target="_blank" rel="noopener">
+        <span class="ol">🔍</span><div class="ot"><strong>AcheConcursos</strong><span>Busca por estado, cargo e banca</span></div>
+      </a>
+    </div>
+
+    <div class="op-group">
+      <h4>🤖 Pesquisar com IA</h4>
+      <a class="op-link" href="https://claude.ai" target="_blank" rel="noopener">
+        <span class="ol">🧠</span><div class="ot"><strong>Claude (Anthropic)</strong><span>Explique qualquer tópico deste guia</span></div>
+      </a>
+      <a class="op-link" href="https://chat.openai.com" target="_blank" rel="noopener">
+        <span class="ol">💬</span><div class="ot"><strong>ChatGPT</strong><span>Tire dúvidas e peça questões extras</span></div>
+      </a>
+      <a class="op-link" href="https://gemini.google.com" target="_blank" rel="noopener">
+        <span class="ol">✨</span><div class="ot"><strong>Gemini</strong><span>Pesquisa com acesso à web em tempo real</span></div>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- MAIN -->
+<main id="main">
+  <div class="page-header">
+    <h1>📖 Guia de Estudos — Concurso Público</h1>
+    <p>Bancas: CESPE/CEBRASPE · FCC · FGV · VUNESP · FUNDATEC &nbsp;|&nbsp; Atualizado: maio de 2026</p>
+  </div>
+
+  <!-- BLOCO DE INSTRUÇÕES PARA IA -->
+  <details id="ai-instructions-block">
+    <summary>🤖 Instruções para IA — Como usar e expandir este guia</summary>
+    <div class="ai-body">
+      <p><strong>Se você é uma IA auxiliando o Lucas</strong>, este bloco explica a estrutura do arquivo e como complementar o conteúdo.</p>
+
+      <p><strong>Dono:</strong> Lucas — estudando para concurso público brasileiro sem banca definida.<br>
+      <strong>Bancas cobertas:</strong> CESPE/CEBRASPE · FCC · FGV · VUNESP · FUNDATEC</p>
+
+      <p><strong>Como adicionar uma questão a uma matéria:</strong></p>
+      <ul>
+        <li>Copie um bloco <code>&lt;div class="quiz-card"&gt;</code> dentro da seção desejada</li>
+        <li>Use um ID único no botão: <code>onclick="revealAnswer('pt-q5')"</code> e <code>id="pt-q5"</code></li>
+        <li>Convenção de IDs: <code>[sigla-materia]-q[número]</code> ex: <code>mat-q4</code>, <code>dc-q3</code></li>
+      </ul>
+
+      <p><strong>Como adicionar um tópico em accordion:</strong></p>
+      <ul>
+        <li>Copie um <code>&lt;div class="card"&gt;</code> com <code>.accordion-header</code> e <code>.accordion-body</code></li>
+        <li>ID do body: <code>pt-novo-topico</code> · ID da seta: <code>arr-pt-novo-topico</code></li>
+      </ul>
+
+      <p><strong>Fontes para pesquisar conteúdo:</strong></p>
+      <ul>
+        <li>Questões reais: <strong>qconcursos.com</strong> (filtrar por banca + matéria)</li>
+        <li>Lei seca: <strong>planalto.gov.br</strong> (CF, 8.112, 14.133)</li>
+        <li>Atualidades: <strong>agenciabrasil.ebc.com.br</strong></li>
+        <li>Provas FUNDATEC: site oficial da banca ou QConcursos filtrando "FUNDATEC"</li>
+      </ul>
+
+      <p><strong>Tópicos que precisam de expansão (menos conteúdo atualmente):</strong></p>
+      <ul>
+        <li>Ciências — só básico; pode expandir Química orgânica e Biologia celular</li>
+        <li>Informática FUNDATEC — precisa de mais questões com imagens de tela descritas</li>
+        <li>Matemática — pode receber PA/PG, estatística e mais questões de lógica</li>
+        <li>Atualidades — atualizar mensalmente com notícias novas</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- PRIORIDADE -->
+  <div class="section" id="prioridade" data-searchable>
+    <div style="margin-bottom:16px">
+      <h2 style="font-size:18px;margin-bottom:12px">📊 Ordem de prioridade das matérias</h2>
+      <table class="priority-table">
+        <thead><tr><th>#</th><th>Matéria</th><th>Frequência</th><th>Peso médio</th></tr></thead>
+        <tbody>
+          <tr><td><span class="rank-badge">1</span></td><td>Língua Portuguesa</td><td>813/1000</td><td>25–30%</td></tr>
+          <tr><td><span class="rank-badge">2</span></td><td>Matemática / Raciocínio Lógico</td><td>582/1000</td><td>20–25%</td></tr>
+          <tr><td><span class="rank-badge">3</span></td><td>Informática</td><td>554/1000</td><td>10–15%</td></tr>
+          <tr><td><span class="rank-badge">4</span></td><td>Direito Constitucional</td><td>508/1000</td><td>10–15%</td></tr>
+          <tr><td><span class="rank-badge">5</span></td><td>Direito Administrativo</td><td>578/1000</td><td>10–15%</td></tr>
+          <tr><td><span class="rank-badge">6</span></td><td>Geografia do Brasil</td><td>média</td><td>5–10%</td></tr>
+          <tr><td><span class="rank-badge">7</span></td><td>História do Brasil</td><td>média</td><td>5–10%</td></tr>
+          <tr><td><span class="rank-badge">8</span></td><td>Atualidades</td><td>maioria</td><td>5–10%</td></tr>
+          <tr><td><span class="rank-badge">9</span></td><td>Ciências (Química/Física/Bio)</td><td>específicos</td><td>variável</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PORTUGUÊS -->
+  <div class="section" id="portugues" data-searchable>
+    <div class="section-header">
+      <span class="emoji">📝</span>
+      <div class="info">
+        <h2>Língua Portuguesa</h2>
+        <span class="badge">813 de cada 1000 concursos</span>
+      </div>
+    </div>
+
+    <div class="card" data-searchable>
+      <div class="accordion-header" onclick="toggleAccordion('pt-interp')">
+        Interpretação de Texto <span class="accordion-arrow" id="arr-pt-interp">▼</span>
+      </div>
+      <div class="accordion-body" id="pt-interp">
+        <ul>
+          <li>Leia o texto inteiro antes de olhar as questões</li>
+          <li>Identifique: tema central, ideia principal de cada parágrafo, opinião do autor</li>
+          <li>Cuidado com alternativas "quase certas" — a banca inclui uma palavra errada</li>
+          <li><strong>"Infere-se", "depreende-se"</strong> → resposta NÃO está literal no texto</li>
+          <li><strong>"De acordo com o texto", "segundo o autor"</strong> → resposta ESTÁ literal no texto</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" data-searchable>
+      <div class="accordion-header" onclick="toggleAccordion('pt-concord')">
+        Concordância Verbal e Nominal <span class="accordion-arrow" id="arr-pt-concord">▼</span>
+      </div>
+      <div class="accordion-body" id="pt-concord">
+        <p style="margin-bottom:8px"><strong>Verbal:</strong></p>
+        <ul>
+          <li>Sujeito composto <em>antes</em> do verbo → plural: "João e Maria <strong>foram</strong>"</li>
+          <li>Sujeito composto <em>depois</em> do verbo → pode concordar com o mais próximo</li>
+          <li>"A maioria", "a maior parte" → singular ou plural (ambos aceitos)</li>
+          <li>Verbos impessoais (haver = existir, fazer = tempo) → <strong>sempre singular</strong>: "Havia pessoas", "Faz dois anos"</li>
+        </ul>
+        <p style="margin-top:10px;margin-bottom:8px"><strong>Nominal:</strong></p>
+        <ul>
+          <li>Adjetivo com vários substantivos → concorda com o mais próximo (posposto) ou vai para o plural</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" data-searchable>
+      <div class="accordion-header" onclick="toggleAccordion('pt-crase')">
+        Crase <span class="accordion-arrow" id="arr-pt-crase">▼</span>
+      </div>
+      <div class="accordion-body" id="pt-crase">
+        <p><strong>✅ USA crase:</strong></p>
+        <ul>
+          <li>"Fui à cidade" (a + a cidade = à)</li>
+          <li>"Às três horas", "à tarde", "à noite"</li>
+          <li>Locuções: "à toa", "às vezes", "à medida que"</li>
+        </ul>
+        <p style="margin-top:10px"><strong>❌ NÃO usa crase:</strong></p>
+        <ul>
+          <li>Antes de verbo: "Comecei <u>a</u> estudar"</li>
+          <li>Antes de pronomes: "Disse <u>a</u> ela"</li>
+          <li>Antes de palavras masculinas: "Fui <u>a</u> pé"</li>
+          <li>Antes de "uma": "Refiro-me <u>a</u> uma situação"</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:10px"><strong>Macete:</strong> Troque a palavra feminina por masculina. Se puder usar "ao", usa crase: "Fui à praia" → "Fui ao mar" ✓</div>
+      </div>
+    </div>
+
+    <div class="card" data-searchable>
+      <div class="accordion-header" onclick="toggleAccordion('pt-porques')">
+        Os Quatro Porquês <span class="accordion-arrow" id="arr-pt-porques">▼</span>
+      </div>
+      <div class="accordion-body" id="pt-porques">
+        <table>
+          <thead><tr><th>Forma</th><th>Quando usar</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>por que</strong></td><td>Pergunta / início de oração</td><td>Por que você foi?</td></tr>
+            <tr><td><strong>por quê</strong></td><td>Pergunta no fim da frase</td><td>Você foi por quê?</td></tr>
+            <tr><td><strong>porque</strong></td><td>Resposta / explicação</td><td>Fui porque quis.</td></tr>
+            <tr><td><strong>porquê</strong></td><td>Substantivo (tem artigo antes)</td><td>Não entendo o porquê.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card" data-searchable>
+      <div class="accordion-header" onclick="toggleAccordion('pt-regencia')">
+        Regência Verbal (os mais cobrados) <span class="accordion-arrow" id="arr-pt-regencia">▼</span>
+      </div>
+      <div class="accordion-body" id="pt-regencia">
+        <table>
+          <thead><tr><th>Verbo</th><th>Regência correta</th><th>Erro comum</th></tr></thead>
+          <tbody>
+            <tr><td>Assistir (ver)</td><td>assiste <strong>a</strong> o filme</td><td>assistiu o filme ❌</td></tr>
+            <tr><td>Visar (objetivar)</td><td>visa <strong>a</strong> melhorar</td><td>visa melhorar ❌</td></tr>
+            <tr><td>Aspirar (almejar)</td><td>aspira <strong>a</strong> o cargo</td><td>aspira o cargo ❌</td></tr>
+            <tr><td>Preferir</td><td>prefere isso <strong>a</strong> aquilo</td><td>prefere isso do que ❌</td></tr>
+            <tr><td>Obedecer</td><td>obedece <strong>às</strong> regras</td><td>obedece as regras ❌</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card" data-searchable>
+      <div class="accordion-header" onclick="toggleAccordion('pt-conectivos')">
+        Conectivos e Coesão Textual <span class="accordion-arrow" id="arr-pt-conectivos">▼</span>
+      </div>
+      <div class="accordion-body" id="pt-conectivos">
+        <table>
+          <thead><tr><th>Relação</th><th>Conectivos</th></tr></thead>
+          <tbody>
+            <tr><td>Adição</td><td>e, também, além disso, ademais, outrossim</td></tr>
+            <tr><td>Oposição</td><td>mas, porém, contudo, todavia, entretanto, no entanto</td></tr>
+            <tr><td>Causa</td><td>porque, pois, já que, visto que, uma vez que</td></tr>
+            <tr><td>Consequência</td><td>logo, portanto, assim, por isso, de modo que</td></tr>
+            <tr><td>Concessão</td><td>embora, apesar de, ainda que, mesmo que</td></tr>
+            <tr><td>Condição</td><td>se, caso, desde que, contanto que</td></tr>
+            <tr><td>Finalidade</td><td>para que, a fim de que, com o intuito de</td></tr>
+            <tr><td>Tempo</td><td>quando, enquanto, assim que, antes que, depois que</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card" data-searchable>
+      <div class="accordion-header" onclick="toggleAccordion('pt-figuras')">
+        Figuras de Linguagem <span class="accordion-arrow" id="arr-pt-figuras">▼</span>
+      </div>
+      <div class="accordion-body" id="pt-figuras">
+        <ul>
+          <li><strong>Metáfora:</strong> comparação SEM "como" — "A vida é uma batalha"</li>
+          <li><strong>Símile/Comparação:</strong> comparação COM "como" — "A vida é como uma batalha"</li>
+          <li><strong>Metonímia:</strong> troca parte pelo todo, autor pela obra — "Ler Machado de Assis"</li>
+          <li><strong>Hipérbole:</strong> exagero — "Estou morrendo de fome"</li>
+          <li><strong>Eufemismo:</strong> suavizar — "Ele passou desta para melhor" (morreu)</li>
+          <li><strong>Ironia:</strong> dizer o oposto — "Que dia lindo!" (em dia de chuva)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="macetes-card">
+      <h3>⚡ Macetes de Português</h3>
+      <ul>
+        <li><strong>Verbos impessoais:</strong> Haver, Fazer (tempo), Chover, Nevar → SEMPRE singular. "Haviam muitas pessoas" ❌</li>
+        <li><strong>Concordância com "se":</strong> "Alugam-se casas" (casas = sujeito) vs "Precisa-se de funcionários" (objeto → singular)</li>
+        <li><strong>Crase com moda:</strong> "Fui à moda italiana" → masculino: "Fui ao modo" → crase ✓</li>
+        <li><strong>Vozes verbais:</strong> Ativo → passivo: objeto direto vira sujeito + ser + particípio</li>
+      </ul>
+    </div>
+
+    <div class="quiz-section">
+      <h3>✏️ Questões de exemplo</h3>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <span class="quiz-banca">CESPE</span>
+          <div class="quiz-question">A crase está correta em qual alternativa?</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">Refiro-me à você.</li>
+            <li data-opt="B)">Fui à pé ao trabalho.</li>
+            <li data-opt="C)">Cheguei às três horas.</li>
+            <li data-opt="D)">Assisti à uma peça ontem.</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('pt-q1')">Ver resposta</button>
+          <div class="quiz-answer" id="pt-q1"><strong>Resposta: C</strong> — "às três horas" (a + as = às). "À você" ❌ (pronome). "À pé" ❌ (palavra masculina). "À uma" ❌ (antes de "uma" não usa crase).</div>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <span class="quiz-banca">FCC</span>
+          <div class="quiz-question">Assinale a alternativa em que a concordância verbal está correta:</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">Haviam muitos erros no texto.</li>
+            <li data-opt="B)">Fazem dois anos que ele partiu.</li>
+            <li data-opt="C)">Existe várias soluções para o problema.</li>
+            <li data-opt="D)">Chegaram o diretor e o coordenador.</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('pt-q2')">Ver resposta</button>
+          <div class="quiz-answer" id="pt-q2"><strong>Resposta: D</strong> — Sujeito composto posposto pode concordar no plural. "Haviam" ❌ (haver = impessoal, singular). "Fazem" ❌ (fazer de tempo = singular). "Existe" ❌ → deveria ser "existem".</div>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <span class="quiz-banca">FUNDATEC</span>
+          <div class="quiz-question">Classe gramatical da palavra "embora" em: "Embora estudasse muito, não foi aprovado."</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">Advérbio de concessão</li>
+            <li data-opt="B)">Conjunção coordenativa adversativa</li>
+            <li data-opt="C)">Conjunção subordinativa concessiva</li>
+            <li data-opt="D)">Preposição</li>
+            <li data-opt="E)">Interjeição</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('pt-q3')">Ver resposta</button>
+          <div class="quiz-answer" id="pt-q3"><strong>Resposta: C</strong> — "Embora" introduz oração subordinada adverbial concessiva. A FUNDATEC adora cobrar classificação exata dos conectivos.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATEMÁTICA -->
+  <div class="section" id="matematica" data-searchable>
+    <div class="section-header">
+      <span class="emoji">🔢</span>
+      <div class="info">
+        <h2>Matemática e Raciocínio Lógico</h2>
+        <span class="badge">582 de cada 1000 concursos</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('mat-porc')">
+        Porcentagem <span class="accordion-arrow" id="arr-mat-porc">▼</span>
+      </div>
+      <div class="accordion-body" id="mat-porc">
+        <ul>
+          <li>x% de N = (x/100) × N</li>
+          <li>Aumento de x%: multiplica por (1 + x/100) → aumento de 20% = × 1,2</li>
+          <li>Desconto de x%: multiplica por (1 − x/100) → desconto de 30% = × 0,7</li>
+          <li><strong>Aumento seguido de desconto NÃO volta ao original:</strong> R$100 + 20% = R$120 → − 20% = R$96</li>
+        </ul>
+        <div class="highlight-box"><strong>Porcentagem rápida:</strong> 10% ÷10 · 5% ÷20 · 1% ÷100 · 15% = 10%+5% · 25% ÷4</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('mat-juros')">
+        Juros Simples e Compostos <span class="accordion-arrow" id="arr-mat-juros">▼</span>
+      </div>
+      <div class="accordion-body" id="mat-juros">
+        <p><strong>Simples:</strong> J = C × i × t &nbsp;|&nbsp; M = C(1 + it)</p>
+        <p style="margin-top:8px"><strong>Compostos:</strong> M = C × (1 + i)^t</p>
+        <ul style="margin-top:8px">
+          <li>"Mês a mês sobre o saldo" / "capitalização" → juros compostos</li>
+          <li>"Taxa fixa" / "sobre o capital inicial" → juros simples</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('mat-logica')">
+        Raciocínio Lógico — Proposições <span class="accordion-arrow" id="arr-mat-logica">▼</span>
+      </div>
+      <div class="accordion-body" id="mat-logica">
+        <table>
+          <thead><tr><th>Símbolo</th><th>Nome</th><th>Verdadeiro quando</th></tr></thead>
+          <tbody>
+            <tr><td>∧</td><td>E (conjunção)</td><td>AMBOS verdadeiros</td></tr>
+            <tr><td>∨</td><td>OU (disjunção)</td><td>pelo menos UM verdadeiro</td></tr>
+            <tr><td>→</td><td>SE...ENTÃO (condicional)</td><td>falso só quando V → F</td></tr>
+            <tr><td>↔</td><td>SE E SOMENTE SE</td><td>ambos iguais (VV ou FF)</td></tr>
+            <tr><td>¬</td><td>NÃO (negação)</td><td>inverte</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:10px"><strong>De Morgan:</strong></p>
+        <ul>
+          <li>¬(p ∧ q) = ¬p ∨ ¬q</li>
+          <li>¬(p ∨ q) = ¬p ∧ ¬q</li>
+          <li>¬(p → q) = p ∧ ¬q</li>
+        </ul>
+        <p style="margin-top:10px"><strong>Contrapositiva:</strong> p → q ≡ ¬q → ¬p</p>
+        <div class="highlight-box" style="margin-top:8px"><strong>Macete condicional:</strong> "Promessa quebrada" = único caso falso. Prometeu (V) mas não cumpriu (F).</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('mat-prob')">
+        Probabilidade e Médias <span class="accordion-arrow" id="arr-mat-prob">▼</span>
+      </div>
+      <div class="accordion-body" id="mat-prob">
+        <p><strong>Probabilidade:</strong> P = casos favoráveis / casos possíveis</p>
+        <ul style="margin-top:6px">
+          <li>P(A ou B) = P(A) + P(B) − P(A e B)</li>
+          <li>P(A e B) independentes = P(A) × P(B)</li>
+        </ul>
+        <p style="margin-top:10px"><strong>Médias:</strong></p>
+        <ul>
+          <li>Aritmética simples: soma ÷ quantidade</li>
+          <li>Ponderada: soma(valor × peso) ÷ soma dos pesos</li>
+          <li>Moda: valor que mais se repete</li>
+          <li>Mediana: valor do meio (ordenar antes!)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="macetes-card">
+      <h3>⚡ Macetes de Matemática</h3>
+      <ul>
+        <li><strong>Negação:</strong> "Todos" → "Algum não" · "Nenhum" → "Algum" · "Algum" → "Nenhum"</li>
+        <li><strong>Regra de 3 de %:</strong> "35% de 240" → 100%=240 / 35%=? → (240×35)/100 = 84</li>
+        <li><strong>Contrapositiva:</strong> "Se chove, fico em casa" ≡ "Se não fico, não chove"</li>
+        <li><strong>Probabilidade:</strong> Resultado entre 0 e 1. P=1 certo, P=0 impossível.</li>
+      </ul>
+    </div>
+
+    <div class="quiz-section">
+      <h3>✏️ Questões de exemplo</h3>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <div class="quiz-question">Produto custava R$80,00. Aumento de 25%, depois desconto de 20%. Qual o preço final?</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">R$80,00</li><li data-opt="B)">R$76,00</li>
+            <li data-opt="C)">R$84,00</li><li data-opt="D)">R$90,00</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('mat-q1')">Ver resposta</button>
+          <div class="quiz-answer" id="mat-q1"><strong>Resposta: A</strong> — R$80 × 1,25 = R$100 → R$100 × 0,80 = R$80,00.</div>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <span class="quiz-banca">Raciocínio Lógico</span>
+          <div class="quiz-question">"Se estudo, passo na prova." É equivalente a:</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">Se passo na prova, então estudei.</li>
+            <li data-opt="B)">Se não passo na prova, então não estudei.</li>
+            <li data-opt="C)">Não estudo e não passo na prova.</li>
+            <li data-opt="D)">Estudo e não passo na prova.</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('mat-q2')">Ver resposta</button>
+          <div class="quiz-answer" id="mat-q2"><strong>Resposta: B</strong> — Contrapositiva: ¬q → ¬p. "Se não passo (¬q), então não estudei (¬p)."</div>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <div class="quiz-question">Turma de 30 alunos: 18 gostam de matemática, 15 de português, 7 gostam de ambas. Quantos não gostam de nenhuma?</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">2</li><li data-opt="B)">3</li>
+            <li data-opt="C)">4</li><li data-opt="D)">5</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('mat-q3')">Ver resposta</button>
+          <div class="quiz-answer" id="mat-q3"><strong>Resposta: C</strong> — Diagrama de Venn: 18 + 15 − 7 = 26. Nenhuma: 30 − 26 = <strong>4</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFORMÁTICA -->
+  <div class="section" id="informatica" data-searchable>
+    <div class="section-header">
+      <span class="emoji">💻</span>
+      <div class="info">
+        <h2>Informática</h2>
+        <span class="badge">554 de cada 1000 concursos</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('inf-atalhos')">
+        Atalhos Word / LibreOffice Writer <span class="accordion-arrow" id="arr-inf-atalhos">▼</span>
+      </div>
+      <div class="accordion-body" id="inf-atalhos">
+        <table>
+          <thead><tr><th>Atalho</th><th>Função</th></tr></thead>
+          <tbody>
+            <tr><td>Ctrl+C / X / V</td><td>Copiar / Recortar / Colar</td></tr>
+            <tr><td>Ctrl+Z / Y</td><td>Desfazer / Refazer</td></tr>
+            <tr><td>Ctrl+B / I / U</td><td>Negrito / Itálico / Sublinhado</td></tr>
+            <tr><td>Ctrl+A / S / P</td><td>Selecionar tudo / Salvar / Imprimir</td></tr>
+            <tr><td>Ctrl+F / H</td><td>Localizar / Localizar e Substituir</td></tr>
+            <tr><td>Ctrl+Home / End</td><td>Início / Final do documento</td></tr>
+            <tr><td>F7</td><td>Verificar ortografia</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('inf-excel')">
+        Excel / LibreOffice Calc — Fórmulas <span class="accordion-arrow" id="arr-inf-excel">▼</span>
+      </div>
+      <div class="accordion-body" id="inf-excel">
+        <table>
+          <thead><tr><th>Fórmula</th><th>O que faz</th></tr></thead>
+          <tbody>
+            <tr><td>=SOMA(A1:A10)</td><td>Soma o intervalo</td></tr>
+            <tr><td>=MÉDIA(A1:A10)</td><td>Média aritmética</td></tr>
+            <tr><td>=MÁXIMO / MÍNIMO</td><td>Maior / menor valor</td></tr>
+            <tr><td>=CONT.NÚM(A1:A10)</td><td>Conta células com número</td></tr>
+            <tr><td>=CONT.SE(A1:A10;"critério")</td><td>Conta com condição</td></tr>
+            <tr><td>=SE(cond;V;F)</td><td>Condicional</td></tr>
+            <tr><td>=PROCV(val;tabela;col;0)</td><td>Busca vertical</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:10px"><strong>Referências:</strong></p>
+        <ul>
+          <li>Relativa: <code>A1</code> (muda ao copiar)</li>
+          <li>Absoluta: <code>$A$1</code> (não muda — atalho F4)</li>
+          <li>Mista: <code>$A1</code> ou <code>A$1</code></li>
+        </ul>
+        <div class="highlight-box" style="margin-top:8px"><strong>Macete $:</strong> O $ "trava" o que estiver ao lado. $A$1 = trava tudo. $A1 = trava só coluna. A$1 = trava só linha.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('inf-seguranca')">
+        Segurança da Informação e Protocolos <span class="accordion-arrow" id="arr-inf-seguranca">▼</span>
+      </div>
+      <div class="accordion-body" id="inf-seguranca">
+        <table>
+          <thead><tr><th>Protocolo</th><th>Para que serve</th></tr></thead>
+          <tbody>
+            <tr><td>HTTP / <strong>HTTPS</strong></td><td>Páginas web (HTTPS = com criptografia)</td></tr>
+            <tr><td>FTP / SFTP</td><td>Transferência de arquivos</td></tr>
+            <tr><td>SMTP</td><td>Envio de e-mails</td></tr>
+            <tr><td>POP3 / IMAP</td><td>Recebimento de e-mails</td></tr>
+            <tr><td>DNS</td><td>Traduz domínio em IP</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:10px"><strong>Ameaças:</strong></p>
+        <ul>
+          <li><strong>Vírus:</strong> se replica infectando arquivos</li>
+          <li><strong>Worm:</strong> se replica pela rede SEM arquivo hospedeiro</li>
+          <li><strong>Trojan:</strong> parece legítimo mas é malicioso</li>
+          <li><strong>Phishing:</strong> e-mail/site falso para roubar dados</li>
+          <li><strong>Ransomware:</strong> sequestra arquivos e exige resgate</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:8px"><strong>Macetes:</strong> S no protocolo = seguro (HTTPS, SFTP). Vírus = hospedeiro. Worm = sozinho. Backup 3-2-1: 3 cópias, 2 mídias, 1 fora do local.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('inf-fundatec')">
+        🔴 Informática FUNDATEC (atenção especial) <span class="accordion-arrow" id="arr-inf-fundatec">▼</span>
+      </div>
+      <div class="accordion-body" id="inf-fundatec">
+        <ul>
+          <li>Considerada a <strong>matéria mais difícil</strong> das provas FUNDATEC</li>
+          <li>Cobra <strong>imagens de tela</strong> (print screen do Word, Excel, Windows)</li>
+          <li>Versões: Windows 10/11, Office 2016/2019/2021 e LibreOffice</li>
+          <li><strong>Dica:</strong> pratique diretamente no software — explore as abas do Word/Excel</li>
+          <li>Temas prioritários: sistemas operacionais, ferramentas Office, segurança, LGPD</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quiz-section">
+      <h3>✏️ Questões de exemplo</h3>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <span class="quiz-banca">FUNDATEC</span>
+          <div class="quiz-question">No Excel, ao copiar =SOMA($A$1:A3) da célula B3 para B4, a fórmula copiada será:</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">=SOMA($A$1:A3)</li><li data-opt="B)">=SOMA($A$1:A4)</li>
+            <li data-opt="C)">=SOMA($A$2:A4)</li><li data-opt="D)">=SOMA($A$1:$A$4)</li>
+            <li data-opt="E)">=SOMA(A1:A4)</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('inf-q1')">Ver resposta</button>
+          <div class="quiz-answer" id="inf-q1"><strong>Resposta: B</strong> — $A$1 é absoluto (não muda). A3 é relativo (muda ao copiar para baixo → A4). Resultado: =SOMA($A$1:A4).</div>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <div class="quiz-question">Arquivos criptografados com mensagem pedindo pagamento. Trata-se de:</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">Vírus</li><li data-opt="B)">Worm</li>
+            <li data-opt="C)">Ransomware</li><li data-opt="D)">Phishing</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('inf-q2')">Ver resposta</button>
+          <div class="quiz-answer" id="inf-q2"><strong>Resposta: C</strong> — Ransomware sequestra arquivos com criptografia e exige resgate.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIREITO CONSTITUCIONAL -->
+  <div class="section" id="constitucional" data-searchable>
+    <div class="section-header">
+      <span class="emoji">⚖️</span>
+      <div class="info">
+        <h2>Direito Constitucional</h2>
+        <span class="badge">508 de cada 1000 concursos</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('dc-fundamentos')">
+        Princípios Fundamentais — Art. 1º ao 4º <span class="accordion-arrow" id="arr-dc-fundamentos">▼</span>
+      </div>
+      <div class="accordion-body" id="dc-fundamentos">
+        <p><strong>Fundamentos da República (Art. 1º) — macete SOCDIVPLU:</strong></p>
+        <ul>
+          <li><strong>SO</strong>berania · <strong>C</strong>idadania · <strong>DI</strong>gnidade da pessoa humana</li>
+          <li><strong>V</strong>alores sociais do trabalho e da livre iniciativa · <strong>PLU</strong>ralismo político</li>
+        </ul>
+        <p style="margin-top:10px"><strong>Objetivos fundamentais (Art. 3º) — CGERP:</strong></p>
+        <ul>
+          <li><strong>C</strong>onstruir sociedade livre, justa e solidária</li>
+          <li><strong>G</strong>arantir o desenvolvimento nacional</li>
+          <li><strong>E</strong>rradicar pobreza e marginalização</li>
+          <li><strong>R</strong>eduzir desigualdades regionais e sociais</li>
+          <li><strong>P</strong>romover bem de todos sem discriminação</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('dc-art5')">
+        Direitos e Garantias Fundamentais — Art. 5º <span class="accordion-arrow" id="arr-dc-art5">▼</span>
+      </div>
+      <div class="accordion-body" id="dc-art5">
+        <ul>
+          <li>Todos iguais perante a lei, sem distinção</li>
+          <li>Ninguém obrigado a fazer/deixar de fazer sem lei (legalidade)</li>
+          <li>Casa inviolável: entra com <strong>consentimento · flagrante · desastre · mandado judicial (dia)</strong></li>
+          <li>Ninguém preso senão em flagrante ou por ordem judicial</li>
+        </ul>
+        <p style="margin-top:10px"><strong>Remédios constitucionais:</strong></p>
+        <ul>
+          <li><strong>Habeas Corpus:</strong> liberdade de locomoção (corpo que se move)</li>
+          <li><strong>Habeas Data:</strong> acesso a dados sobre si mesmo</li>
+          <li><strong>Mandado de Segurança:</strong> direito líquido e certo (não é locomoção nem dados)</li>
+          <li><strong>Mandado de Injunção:</strong> falta de lei para exercer direito constitucional</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('dc-limpe')">
+        Administração Pública — Art. 37 · Princípio LIMPE <span class="accordion-arrow" id="arr-dc-limpe">▼</span>
+      </div>
+      <div class="accordion-body" id="dc-limpe">
+        <table>
+          <thead><tr><th>Letra</th><th>Princípio</th><th>O que significa</th></tr></thead>
+          <tbody>
+            <tr><td><strong>L</strong></td><td>Legalidade</td><td>Só fazer o que a lei autoriza</td></tr>
+            <tr><td><strong>I</strong></td><td>Impessoalidade</td><td>Sem favorecimento pessoal</td></tr>
+            <tr><td><strong>M</strong></td><td>Moralidade</td><td>Ética, boa-fé, honestidade</td></tr>
+            <tr><td><strong>P</strong></td><td>Publicidade</td><td>Transparência, salvo sigilo necessário</td></tr>
+            <tr><td><strong>E</strong></td><td>Eficiência</td><td>Melhor resultado com menor custo (EC 19/98)</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:10px"><strong>Concurso público (Art. 37, II):</strong></p>
+        <ul>
+          <li>Regra: aprovação em concurso público de provas ou provas e títulos</li>
+          <li>Validade: até 2 anos, prorrogável uma vez por igual período</li>
+          <li>Teto: subsídio dos Ministros do STF</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quiz-section">
+      <h3>✏️ Questões de exemplo</h3>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <span class="quiz-banca">CESPE</span>
+          <div class="quiz-question">Qual remédio constitucional protege a liberdade de locomoção ameaçada por ato ilegal?</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">Mandado de Segurança</li><li data-opt="B)">Habeas Data</li>
+            <li data-opt="C)">Habeas Corpus</li><li data-opt="D)">Mandado de Injunção</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('dc-q1')">Ver resposta</button>
+          <div class="quiz-answer" id="dc-q1"><strong>Resposta: C</strong> — Habeas Corpus (Art. 5º, LXVIII) protege a liberdade de locomoção.</div>
+        </div>
+      </div>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <span class="quiz-banca">CESPE</span>
+          <div class="quiz-question">A investidura em cargo ou emprego público depende de:</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">Indicação do superior hierárquico.</li>
+            <li data-opt="B)">Aprovação em processo seletivo simplificado.</li>
+            <li data-opt="C)">Aprovação prévia em concurso público de provas ou provas e títulos.</li>
+            <li data-opt="D)">Nomeação pelo chefe do Executivo.</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('dc-q2')">Ver resposta</button>
+          <div class="quiz-answer" id="dc-q2"><strong>Resposta: C</strong> — Art. 37, II da CF/88. Regra geral: concurso público.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIREITO ADMINISTRATIVO -->
+  <div class="section" id="administrativo" data-searchable>
+    <div class="section-header">
+      <span class="emoji">🏛️</span>
+      <div class="info">
+        <h2>Direito Administrativo</h2>
+        <span class="badge">578 de cada 1000 concursos</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('da-atos')">
+        Atributos dos Atos Administrativos — TIPPA <span class="accordion-arrow" id="arr-da-atos">▼</span>
+      </div>
+      <div class="accordion-body" id="da-atos">
+        <table>
+          <thead><tr><th>Letra</th><th>Atributo</th><th>Significado</th></tr></thead>
+          <tbody>
+            <tr><td><strong>T</strong></td><td>Tipicidade</td><td>Só pode praticar atos previstos em lei</td></tr>
+            <tr><td><strong>I</strong></td><td>Imperatividade</td><td>Impõe obrigações sem consentimento</td></tr>
+            <tr><td><strong>P</strong></td><td>Presunção de legitimidade</td><td>Válido até prova em contrário</td></tr>
+            <tr><td><strong>P</strong></td><td>Presunção de veracidade</td><td>Verdadeiro o que declara</td></tr>
+            <tr><td><strong>A</strong></td><td>Autoexecutoriedade</td><td>Executa sem o judiciário (nem todo ato)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('da-licitacao')">
+        Licitação — Lei 14.133/2021 <span class="accordion-arrow" id="arr-da-licitacao">▼</span>
+      </div>
+      <div class="accordion-body" id="da-licitacao">
+        <table>
+          <thead><tr><th>Modalidade</th><th>Quando usar</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Pregão</strong></td><td>Bens e serviços comuns (eletrônico é a regra)</td></tr>
+            <tr><td><strong>Concorrência</strong></td><td>Contratos de grande valor, obras, serviços especializados</td></tr>
+            <tr><td><strong>Concurso</strong></td><td>Escolha de trabalho técnico, científico ou artístico</td></tr>
+            <tr><td><strong>Leilão</strong></td><td>Venda de bens inservíveis ou apreendidos</td></tr>
+            <tr><td><strong>Diálogo competitivo</strong></td><td>Soluções inovadoras (nova na Lei 14.133)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('da-servidores')">
+        Agentes Públicos — Lei 8.112/1990 <span class="accordion-arrow" id="arr-da-servidores">▼</span>
+      </div>
+      <div class="accordion-body" id="da-servidores">
+        <ul>
+          <li>Estágio probatório: <strong>3 anos</strong></li>
+          <li>Férias: <strong>30 dias</strong> por ano (pode converter 1/3 em abono)</li>
+          <li>Licença maternidade: <strong>120 dias</strong></li>
+          <li>Licença paternidade: <strong>5 dias</strong></li>
+          <li>Aposentadoria compulsória: <strong>75 anos</strong></li>
+          <li>Acumulação: proibida, exceto dois de professor, professor + técnico, dois da área de saúde</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('da-responsabilidade')">
+        Responsabilidade Civil do Estado <span class="accordion-arrow" id="arr-da-responsabilidade">▼</span>
+      </div>
+      <div class="accordion-body" id="da-responsabilidade">
+        <ul>
+          <li>Teoria adotada: <strong>objetiva</strong> (dano + nexo causal, sem provar culpa)</li>
+          <li>Art. 37, §6º CF/88: Estado responde objetivamente por atos de seus agentes</li>
+          <li>Ação regressiva contra o agente: só se houver <strong>dolo ou culpa</strong></li>
+          <li>Exceção — omissão do Estado: teoria subjetiva</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:8px"><strong>Macete:</strong> Estado = "seguradora". Se causou dano, paga. Não precisa provar culpa. Depois cobra do agente (se dolo/culpa).</div>
+      </div>
+    </div>
+
+    <div class="quiz-section">
+      <h3>✏️ Questões de exemplo</h3>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <div class="quiz-question">Modalidade de licitação para aquisição de computadores (bens comuns):</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">Concorrência</li><li data-opt="B)">Tomada de preços</li>
+            <li data-opt="C)">Pregão</li><li data-opt="D)">Concurso</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('da-q1')">Ver resposta</button>
+          <div class="quiz-answer" id="da-q1"><strong>Resposta: C</strong> — Pregão é obrigatório para bens e serviços comuns, preferencialmente eletrônico.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GEOGRAFIA -->
+  <div class="section" id="geografia" data-searchable>
+    <div class="section-header">
+      <span class="emoji">🌎</span>
+      <div class="info"><h2>Geografia do Brasil</h2></div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('geo-regioes')">
+        Regiões Brasileiras <span class="accordion-arrow" id="arr-geo-regioes">▼</span>
+      </div>
+      <div class="accordion-body" id="geo-regioes">
+        <table>
+          <thead><tr><th>Região</th><th>Estados</th><th>Característica</th></tr></thead>
+          <tbody>
+            <tr><td>Norte</td><td>AM,PA,RO,RR,AC,AP,TO</td><td>Maior em área, Amazônia</td></tr>
+            <tr><td>Nordeste</td><td>MA,PI,CE,RN,PB,PE,AL,SE,BA</td><td>9 estados, semiárido</td></tr>
+            <tr><td>Centro-Oeste</td><td>MT,MS,GO,DF</td><td>Cerrado, agronegócio, Brasília</td></tr>
+            <tr><td>Sudeste</td><td>SP,RJ,MG,ES</td><td>Maior PIB, mais populoso</td></tr>
+            <tr><td>Sul</td><td>PR,SC,RS</td><td>Subtropical, colonização europeia</td></tr>
+          </tbody>
+        </table>
+        <div class="highlight-box" style="margin-top:8px">
+          <strong>Área:</strong> N &gt; NE &gt; CO &gt; SE &gt; S &nbsp;|&nbsp; <strong>População:</strong> SE &gt; NE &gt; S &gt; N &gt; CO
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('geo-biomas')">
+        Biomas Brasileiros <span class="accordion-arrow" id="arr-geo-biomas">▼</span>
+      </div>
+      <div class="accordion-body" id="geo-biomas">
+        <table>
+          <thead><tr><th>Bioma</th><th>Localização</th><th>Destaque</th></tr></thead>
+          <tbody>
+            <tr><td>Amazônia</td><td>Norte</td><td>Maior bioma, maior biodiversidade</td></tr>
+            <tr><td>Cerrado</td><td>Centro-Oeste</td><td>2º maior, "berço das águas"</td></tr>
+            <tr><td><strong>Caatinga</strong></td><td>Nordeste</td><td><strong>Único exclusivamente brasileiro</strong></td></tr>
+            <tr><td>Mata Atlântica</td><td>Litoral</td><td>Mais devastado (~12% original)</td></tr>
+            <tr><td>Pampa</td><td>Rio Grande do Sul</td><td>Campos gaúchos</td></tr>
+            <tr><td>Pantanal</td><td>MT e MS</td><td>Maior planície alagada do MUNDO</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="quiz-section">
+      <h3>✏️ Questões de exemplo</h3>
+      <div class="quiz-card">
+        <div class="quiz-card-body">
+          <div class="quiz-question">Qual bioma brasileiro é exclusivamente nacional?</div>
+          <ul class="quiz-options">
+            <li data-opt="A)">Amazônia</li><li data-opt="B)">Cerrado</li>
+            <li data-opt="C)">Caatinga</li><li data-opt="D)">Pantanal</li>
+          </ul>
+          <button class="reveal-btn" onclick="revealAnswer('geo-q1')">Ver resposta</button>
+          <div class="quiz-answer" id="geo-q1"><strong>Resposta: C</strong> — A Caatinga é o único bioma exclusivamente brasileiro. Os demais têm continuidade em países vizinhos.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTÓRIA -->
+  <div class="section" id="historia" data-searchable>
+    <div class="section-header">
+      <span class="emoji">📚</span>
+      <div class="info"><h2>História do Brasil</h2></div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('hist-linha')">
+        Linha do Tempo — Fatos que mais caem <span class="accordion-arrow" id="arr-hist-linha">▼</span>
+      </div>
+      <div class="accordion-body" id="hist-linha">
+        <ul>
+          <li><strong>Ciclos econômicos:</strong> Pau-Brasil → Cana-de-açúcar (NE) → Mineração (MG) → Café (SP/RJ)</li>
+          <li><strong>Independência:</strong> 7 set 1822, D. Pedro I — "Grito do Ipiranga"</li>
+          <li><strong>Lei Áurea:</strong> 13 mai 1888, Princesa Isabel — abolição da escravidão</li>
+          <li><strong>República:</strong> 15 nov 1889, Marechal Deodoro da Fonseca</li>
+          <li><strong>Era Vargas (1930-45):</strong> CLT (1943), salário mínimo, voto feminino (1932)</li>
+          <li><strong>Regime Militar:</strong> 1964–1985 · AI-5 em 1968 (mais duro)</li>
+          <li><strong>Constituição Cidadã:</strong> 1988</li>
+          <li><strong>Plano Real:</strong> 1994, Itamar Franco/FHC — fim da hiperinflação</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="macetes-card">
+      <h3>⚡ Macetes de História</h3>
+      <ul>
+        <li><strong>Presidentes Nova República:</strong> Sarney → Collor (impeachment 92) → Itamar → FHC → Lula → Dilma (impeachment 2016) → Temer → Bolsonaro → Lula (2023-)</li>
+        <li><strong>Lei Áurea:</strong> "13 de maio, 88 — liberdade que veio de repente"</li>
+        <li><strong>AI-5:</strong> "Cinco é o mais duro" — ato mais severo do regime militar (1968)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ATUALIDADES -->
+  <div class="section" id="atualidades" data-searchable>
+    <div class="section-header">
+      <span class="emoji">📰</span>
+      <div class="info">
+        <h2>Atualidades — Abril/Maio 2026</h2>
+        <span class="badge">Alta chance de cair</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('at-concursos')">
+        🔔 Concursos Públicos — Panorama 2026 <span class="accordion-arrow" id="arr-at-concursos">▼</span>
+      </div>
+      <div class="accordion-body" id="at-concursos">
+        <ul>
+          <li><strong>163.802 vagas previstas</strong> para 2026 (LOA 2026)</li>
+          <li><strong>IBGE:</strong> concurso esperado mai/jun 2026</li>
+          <li><strong>INSS (Programa Acelera):</strong> 2.000 vagas anunciadas (total solicitado: 8.500)</li>
+          <li><strong>PRF:</strong> 263 vagas policial + 248 agente administrativo (edital aguardado)</li>
+          <li><strong>PM SP / SEE SP:</strong> editais previstos mai/jun 2026</li>
+          <li><strong>CRECI BA:</strong> 500 vagas abertas</li>
+          <li><strong>Semana 11/05/2026:</strong> 46 novos concursos com 6.121 vagas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('at-politica')">
+        Política e Economia 2026 <span class="accordion-arrow" id="arr-at-politica">▼</span>
+      </div>
+      <div class="accordion-body" id="at-politica">
+        <ul>
+          <li><strong>Eleições 2026:</strong> deputados federais/estaduais, senadores (1/3), governadores, presidente. Debate sobre IA em campanhas e deepfakes.</li>
+          <li><strong>Reforma tributária (EC 132/2023):</strong> criação do IBS (Imposto sobre Bens e Serviços) e CBS para substituir impostos antigos</li>
+          <li><strong>Isenção do IR:</strong> Lei 15.270/2025 — isenção até R$5.000/mês, redução gradual até R$7.350/mês</li>
+          <li><strong>Tarifas de Trump:</strong> política protecionista dos EUA impactando exportações brasileiras (soja, aço, petróleo) e relações Mercosul–EUA</li>
+          <li><strong>Segurança pública:</strong> PEC da Segurança Pública, crime organizado, forças federais</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('at-tech')">
+        Tecnologia e Ciência <span class="accordion-arrow" id="arr-at-tech">▼</span>
+      </div>
+      <div class="accordion-body" id="at-tech">
+        <ul>
+          <li><strong>Inteligência Artificial:</strong> regulamentação global, uso em serviços públicos, detecção de fraude em concursos</li>
+          <li><strong>LGPD:</strong> Lei Geral de Proteção de Dados em vigor com sanções efetivas</li>
+          <li><strong>5G:</strong> expansão no Brasil, impacto em municípios menores</li>
+          <li><strong>Segurança cibernética:</strong> ataques a órgãos públicos em destaque</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CIÊNCIAS -->
+  <div class="section" id="ciencias" data-searchable>
+    <div class="section-header">
+      <span class="emoji">🧪</span>
+      <div class="info"><h2>Ciências (Química, Física, Biologia)</h2></div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('cien-quim')">
+        Química — Básico para concursos gerais <span class="accordion-arrow" id="arr-cien-quim">▼</span>
+      </div>
+      <div class="accordion-body" id="cien-quim">
+        <ul>
+          <li>Ligações: iônica (metal + não-metal), covalente (não-metal + não-metal), metálica</li>
+          <li>Reações: síntese (A+B→AB), decomposição, simples troca, dupla troca</li>
+          <li>pH: 0–6 = ácido · 7 = neutro · 8–14 = base</li>
+          <li>1 mol = 6,02×10²³ partículas (número de Avogadro)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('cien-fis')">
+        Física — Fórmulas principais <span class="accordion-arrow" id="arr-cien-fis">▼</span>
+      </div>
+      <div class="accordion-body" id="cien-fis">
+        <ul>
+          <li>Velocidade: <code>v = d/t</code></li>
+          <li>Força (Newton): <code>F = m × a</code></li>
+          <li>Energia cinética: <code>Ec = ½mv²</code></li>
+          <li>Energia potencial: <code>Ep = mgh</code></li>
+          <li>Lei de Ohm: <code>V = R × I</code></li>
+          <li>Ondas: <code>v = λ × f</code></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('cien-bio')">
+        Biologia — Conceitos essenciais <span class="accordion-arrow" id="arr-cien-bio">▼</span>
+      </div>
+      <div class="accordion-body" id="cien-bio">
+        <ul>
+          <li>Procarionte (sem núcleo — bactérias) vs Eucarionte (com núcleo)</li>
+          <li>DNA: portador da informação genética, no núcleo</li>
+          <li>Evolução: seleção natural (Darwin). Evolução ≠ progresso.</li>
+          <li>Cadeia alimentar: produtor → consumidor primário → secundário → decompositores</li>
+          <li>Doenças virais (gripe, dengue), bacterianas (tuberculose), parasitárias (malária)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRONOGRAMA -->
+  <div class="section" id="cronograma" data-searchable>
+    <div class="section-header">
+      <span class="emoji">📅</span>
+      <div class="info"><h2>Cronograma de Estudos</h2></div>
+    </div>
+
+    <div style="margin-bottom:16px">
+      <h3 style="font-size:15px;margin-bottom:12px;color:var(--text-secondary)">📌 Distribuição semanal — 20h/semana (quem trabalha)</h3>
+      <div class="schedule-grid">
+        <div class="schedule-card"><div class="day">Segunda</div><div class="subject">📝 Português</div><div class="hours">2h — Teoria 1h + Questões 1h</div></div>
+        <div class="schedule-card"><div class="day">Terça</div><div class="subject">🔢 Matemática</div><div class="hours">2h — Teoria 1h + Questões 1h</div></div>
+        <div class="schedule-card"><div class="day">Quarta</div><div class="subject">⚖️ Dir. Constitucional</div><div class="hours">2h — Leitura CF + questões</div></div>
+        <div class="schedule-card"><div class="day">Quinta</div><div class="subject">💻 Informática + 🏛️ Dir. Admin.</div><div class="hours">3h — 1,5h cada</div></div>
+        <div class="schedule-card"><div class="day">Sexta</div><div class="subject">🔄 Revisão geral</div><div class="hours">2h — Tudo da semana</div></div>
+        <div class="schedule-card"><div class="day">Sábado</div><div class="subject">📝 Simulado</div><div class="hours">3h — Prova completa</div></div>
+        <div class="schedule-card"><div class="day">Domingo</div><div class="subject">📰 Atualidades + 🌎 Geo/Hist</div><div class="hours">2h — Leitura + resumos</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('cron-revisao')">
+        Sistema de Revisão Espaçada <span class="accordion-arrow" id="arr-cron-revisao">▼</span>
+      </div>
+      <div class="accordion-body" id="cron-revisao">
+        <ul>
+          <li><strong>1 dia depois:</strong> revisar (leitura rápida + 5 questões)</li>
+          <li><strong>7 dias depois:</strong> revisar novamente</li>
+          <li><strong>30 dias depois:</strong> revisão final</li>
+          <li><strong>Véspera da prova:</strong> apenas os pontos mais fracos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('cron-pareto')">
+        Princípio de Pareto (80/20) por matéria <span class="accordion-arrow" id="arr-cron-pareto">▼</span>
+      </div>
+      <div class="accordion-body" id="cron-pareto">
+        <ul>
+          <li><strong>Português:</strong> interpretação de texto + concordância + crase</li>
+          <li><strong>Matemática:</strong> porcentagem + regra de três + juros</li>
+          <li><strong>Informática:</strong> Office + Windows + segurança</li>
+          <li><strong>Constitucional:</strong> Art. 5º + Art. 37 + princípios</li>
+          <li><strong>Administrativo:</strong> LIMPE + licitação + responsabilidade do Estado</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <h3 style="font-size:15px;margin-bottom:12px;color:var(--text-secondary)">✅ Progresso pessoal — marque o que já estudou</h3>
+      <div class="card" style="padding:16px">
+        <div class="progress-item"><input type="checkbox" id="prog1" onchange="saveProgress()"><label for="prog1">📝 Português — Interpretação de texto</label></div>
+        <div class="progress-item"><input type="checkbox" id="prog2" onchange="saveProgress()"><label for="prog2">📝 Português — Concordância e crase</label></div>
+        <div class="progress-item"><input type="checkbox" id="prog3" onchange="saveProgress()"><label for="prog3">🔢 Matemática — Porcentagem e regra de 3</label></div>
+        <div class="progress-item"><input type="checkbox" id="prog4" onchange="saveProgress()"><label for="prog4">🔢 Matemática — Raciocínio lógico</label></div>
+        <div class="progress-item"><input type="checkbox" id="prog5" onchange="saveProgress()"><label for="prog5">💻 Informática — Office e atalhos</label></div>
+        <div class="progress-item"><input type="checkbox" id="prog6" onchange="saveProgress()"><label for="prog6">💻 Informática — Segurança e protocolos</label></div>
+        <div class="progress-item"><input type="checkbox" id="prog7" onchange="saveProgress()"><label for="prog7">⚖️ Direito Constitucional — Art. 5º e Art. 37</label></div>
+        <div class="progress-item"><input type="checkbox" id="prog8" onchange="saveProgress()"><label for="prog8">🏛️ Direito Administrativo — LIMPE e licitação</label></div>
+        <div class="progress-item"><input type="checkbox" id="prog9" onchange="saveProgress()"><label for="prog9">🌎 Geografia — Biomas e regiões</label></div>
+        <div class="progress-item"><input type="checkbox" id="prog10" onchange="saveProgress()"><label for="prog10">📚 História — República e Nova República</label></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DICAS -->
+  <div class="section" id="dicas" data-searchable>
+    <div class="section-header">
+      <span class="emoji">🎯</span>
+      <div class="info"><h2>Dicas de Prova e Bancas</h2></div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('dicas-geral')">
+        Na hora de resolver questões <span class="accordion-arrow" id="arr-dicas-geral">▼</span>
+      </div>
+      <div class="accordion-body" id="dicas-geral">
+        <ul>
+          <li>Leia o enunciado completo antes das alternativas</li>
+          <li>Elimine as claramente erradas primeiro</li>
+          <li><strong>Palavras absolutas</strong> ("sempre", "nunca", "todos", "nenhum") → geralmente falsas</li>
+          <li><strong>Palavras moderadas</strong> ("pode", "em regra", "geralmente") → geralmente verdadeiras</li>
+          <li>Não mude sua resposta sem motivo sólido</li>
+          <li>Controle o tempo: não gaste mais que o dobro por questão difícil</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('dicas-bancas')">
+        Perfil das Bancas <span class="accordion-arrow" id="arr-dicas-bancas">▼</span>
+      </div>
+      <div class="accordion-body" id="dicas-bancas">
+        <table>
+          <thead><tr><th>Banca</th><th>Estilo</th><th>Dica</th></tr></thead>
+          <tbody>
+            <tr><td><strong>CESPE/CEBRASPE</strong></td><td>Certo ou Errado — um erro torna tudo errado</td><td>Leia com cuidado datas, nomes e números</td></tr>
+            <tr><td><strong>FCC</strong></td><td>Múltipla escolha — lei seca e gramática</td><td>Menos interpretação, mais letra da lei</td></tr>
+            <tr><td><strong>FGV</strong></td><td>Nível alto, textos longos</td><td>Foco em raciocínio e interpretação</td></tr>
+            <tr><td><strong>VUNESP</strong></td><td>Equilíbrio entre teoria e prática</td><td>Provas anteriores da banca são estratégicas</td></tr>
+            <tr><td><strong>FUNDATEC</strong></td><td>5 alternativas, baixo-moderado, repete questões</td><td>Resolva provas antigas — é ouro nessa banca</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('dicas-fundatec')">
+        🔵 FUNDATEC — Perfil completo <span class="accordion-arrow" id="arr-dicas-fundatec">▼</span>
+      </div>
+      <div class="accordion-body" id="dicas-fundatec">
+        <p style="margin-bottom:8px">Fundação criada em 1973 no Rio Grande do Sul. Organiza concursos no Sul do Brasil e em órgãos de pequeno/médio porte: Brigada Militar RS, Polícia Penal RS, BRDE, CORSAN, prefeituras gaúchas.</p>
+        <p><strong>Formato:</strong> 5 alternativas (A a E) · dificuldade baixa/moderada · repete questões antigas</p>
+        <p style="margin-top:10px"><strong>Por matéria:</strong></p>
+        <ul>
+          <li><strong>Português:</strong> muito mais gramática normativa do que interpretação. Morfologia, análise sintática, ortografia.</li>
+          <li><strong>Informática:</strong> matéria mais difícil — cobra imagens de tela (print screen). Pratique no software.</li>
+          <li><strong>Direito:</strong> literalidade da lei — decore o texto, não só o conceito.</li>
+          <li><strong>Matemática:</strong> questões diretas, porcentagem, regra de três, proposições.</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:10px">
+          <strong>Estratégia FUNDATEC:</strong> Resolva 3+ provas antigas completas (disponível no site da banca ou QConcursos). A banca gosta de "qual alternativa NÃO está correta" — leia o enunciado com atenção.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('dicas-vespera')">
+        Na véspera da prova <span class="accordion-arrow" id="arr-dicas-vespera">▼</span>
+      </div>
+      <div class="accordion-body" id="dicas-vespera">
+        <ul>
+          <li>Não estude conteúdo novo</li>
+          <li>Revise apenas os seus "pontos fracos" anotados</li>
+          <li>Durma bem — memória e raciocínio dependem de sono</li>
+          <li>Separe documentos, lápis, caneta, água na noite anterior</li>
+          <li>Chegue com antecedência ao local da prova</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCURSOS ABERTOS -->
+  <div class="section" id="concursos" data-searchable>
+    <div class="section-header">
+      <span class="emoji">🔔</span>
+      <div class="info">
+        <h2>Concursos Abertos — Maio 2026</h2>
+        <span class="badge">Atualizado 13/05/2026</span>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-bottom:16px">
+      <strong>Dica:</strong> Verifique datas no site oficial do concurso antes de se inscrever. Prazos mudam.
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('conc-abertos')">
+        Concursos com inscrições abertas ou previstas <span class="accordion-arrow" id="arr-conc-abertos">▼</span>
+      </div>
+      <div class="accordion-body" id="conc-abertos">
+        <table>
+          <thead><tr><th>Órgão</th><th>Vagas</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>INSS (Programa Acelera)</td><td>2.000 anunciadas</td><td>Aguardando edital</td></tr>
+            <tr><td>IBGE</td><td>A definir</td><td>Edital esperado mai/jun 2026</td></tr>
+            <tr><td>PRF — Policial</td><td>263</td><td>Edital aguardado</td></tr>
+            <tr><td>PRF — Agente Administrativo</td><td>248</td><td>Edital aguardado</td></tr>
+            <tr><td>PM SP / SEE SP</td><td>A definir</td><td>Editais previstos mai/jun 2026</td></tr>
+            <tr><td>TCE SP</td><td>A definir</td><td>Edital previsto até jun 2026</td></tr>
+            <tr><td>UNIFAP</td><td>51</td><td>Inscrições 11/05 a 12/06/2026</td></tr>
+            <tr><td>CRECI BA</td><td>500</td><td>Inscrições abertas</td></tr>
+            <tr><td>Polícia Penal SP</td><td>A definir</td><td>Inscrições abertas mai 2026</td></tr>
+            <tr><td>Receita Federal</td><td>A definir</td><td>Autorização prevista 2026, edital 2027</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="accordion-header" onclick="toggleAccordion('conc-recursos')">
+        Recursos gratuitos para estudo <span class="accordion-arrow" id="arr-conc-recursos">▼</span>
+      </div>
+      <div class="accordion-body" id="conc-recursos">
+        <ul>
+          <li><strong>QConcursos</strong> (qconcursos.com) — banco de questões por disciplina e banca</li>
+          <li><strong>Estratégia Concursos</strong> (estrategiaconcursos.com.br) — aulas e resumos gratuitos</li>
+          <li><strong>Gran Cursos Online</strong> (grancursosonline.com.br) — videoaulas gratuitas</li>
+          <li><strong>Tec Concursos</strong> (tecconcursos.com.br) — simulados</li>
+          <li><strong>Agência Brasil</strong> (agenciabrasil.ebc.com.br) — atualidades confiáveis</li>
+          <li><strong>Planalto</strong> (planalto.gov.br) — texto oficial das leis</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-results" id="no-results">
+    <div style="font-size:48px;margin-bottom:12px">🔍</div>
+    <div style="font-size:18px;margin-bottom:6px">Nenhum resultado encontrado</div>
+    <div style="font-size:14px">Tente outro termo de busca</div>
+  </div>
+
+  <footer style="text-align:center;padding:40px 0 20px;color:var(--text-muted);font-size:12px;border-top:1px solid var(--border);margin-top:40px">
+    Guia montado com dados de 2025/2026 — Bancas: CESPE, FCC, FGV, VUNESP, FUNDATEC<br>
+    Atualizado em maio de 2026 · Para atualidades, complemente com Agência Brasil semanalmente
+  </footer>
+</main>
+
+<script>
+// ── ACCORDION ──
+function toggleAccordion(id) {
+  const body = document.getElementById(id);
+  const arrow = document.getElementById('arr-' + id);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  if (arrow) arrow.classList.toggle('open', !isOpen);
+}
+
+// ── QUIZ ──
+function revealAnswer(id) {
+  const el = document.getElementById(id);
+  el.classList.add('visible');
+  el.previousElementSibling.style.display = 'none';
+}
+
+// ── SEARCH ──
+function filterSearch(query) {
+  const q = query.trim().toLowerCase();
+  const sections = document.querySelectorAll('.section[data-searchable]');
+  let anyVisible = false;
+
+  sections.forEach(sec => {
+    if (!q) {
+      sec.style.display = '';
+      anyVisible = true;
+      return;
+    }
+    const text = sec.textContent.toLowerCase();
+    const match = text.includes(q);
+    sec.style.display = match ? '' : 'none';
+    if (match) anyVisible = true;
+  });
+
+  document.getElementById('no-results').classList.toggle('visible', !anyVisible && q.length > 0);
+}
+
+// ── THEME ──
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.querySelector('.theme-btn').textContent = next === 'dark' ? '🌙 Alternar tema' : '☀️ Alternar tema';
+}
+
+// ── ACTIVE NAV ──
+function setActive(el) {
+  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── POMODORO ──
+let pomDuration = 25 * 60;
+let pomSeconds = pomDuration;
+let pomInterval = null;
+let pomRunning = false;
+let pomSession = 1;
+
+function setPomMode(minutes, btn) {
+  if (pomRunning) return;
+  document.querySelectorAll('.pom-mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  pomDuration = minutes * 60;
+  pomSeconds = pomDuration;
+  pomSession = 1;
+  updatePomDisplay();
+  document.getElementById('pom-session').textContent = 'Sessão 1 de 4';
+}
+
+function updatePomDisplay() {
+  const m = Math.floor(pomSeconds / 60).toString().padStart(2, '0');
+  const s = (pomSeconds % 60).toString().padStart(2, '0');
+  document.getElementById('pom-display').textContent = m + ':' + s;
+}
+
+function pomBeep() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [0, 0.15, 0.3].forEach(offset => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = offset === 0.3 ? 1100 : 880;
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0, ctx.currentTime + offset);
+      gain.gain.linearRampToValueAtTime(0.35, ctx.currentTime + offset + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + offset + 0.5);
+      osc.start(ctx.currentTime + offset);
+      osc.stop(ctx.currentTime + offset + 0.5);
+    });
+  } catch(e) {}
+}
+
+function togglePomodoro() {
+  const btn = document.querySelector('.pom-btn.start');
+  if (!pomRunning) {
+    pomRunning = true;
+    btn.textContent = '⏸ Pausar';
+    pomInterval = setInterval(() => {
+      pomSeconds--;
+      updatePomDisplay();
+      if (pomSeconds <= 0) {
+        clearInterval(pomInterval);
+        pomRunning = false;
+        btn.textContent = '▶ Iniciar';
+        pomBeep();
+        pomSession = pomSession < 4 ? pomSession + 1 : 1;
+        pomSeconds = pomDuration;
+        updatePomDisplay();
+        document.getElementById('pom-session').textContent = 'Sessão ' + pomSession + ' de 4';
+      }
+    }, 1000);
+  } else {
+    clearInterval(pomInterval);
+    pomRunning = false;
+    btn.textContent = '▶ Iniciar';
+  }
+}
+
+function resetPomodoro() {
+  clearInterval(pomInterval);
+  pomRunning = false;
+  pomSeconds = pomDuration;
+  pomSession = 1;
+  updatePomDisplay();
+  document.querySelector('.pom-btn.start').textContent = '▶ Iniciar';
+  document.getElementById('pom-session').textContent = 'Sessão 1 de 4';
+}
+
+// ── ONLINE MODE ──
+function toggleOnlinePanel() {
+  const panel = document.getElementById('online-panel');
+  const overlay = document.getElementById('op-overlay');
+  const btn = document.getElementById('online-toggle-btn');
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+  overlay.classList.toggle('open', !isOpen);
+  btn.classList.toggle('active', !isOpen);
+}
+
+function closeOnlinePanel() {
+  document.getElementById('online-panel').classList.remove('open');
+  document.getElementById('op-overlay').classList.remove('open');
+  document.getElementById('online-toggle-btn').classList.remove('active');
+}
+
+// ── PROGRESS ──
+function saveProgress() {
+  const checkboxes = document.querySelectorAll('.progress-item input[type="checkbox"]');
+  const state = {};
+  checkboxes.forEach(cb => { state[cb.id] = cb.checked; });
+  localStorage.setItem('progress', JSON.stringify(state));
+}
+
+function loadProgress() {
+  try {
+    const state = JSON.parse(localStorage.getItem('progress') || '{}');
+    Object.entries(state).forEach(([id, checked]) => {
+      const el = document.getElementById(id);
+      if (el) el.checked = checked;
+    });
+  } catch(e) {}
+}
+
+// ── API CLIENT ──────────────────────────────────────────────────────────────
+// Detecta automaticamente: localhost usa porta 3000, produção usa o domínio
+// do Vercel configurado abaixo. Trocar PROD_URL após o deploy.
+const PROD_URL = 'https://estudos-html.vercel.app'
+const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+  ? 'http://localhost:3000'
+  : PROD_URL
+
+// Wrapper seguro: nunca lança exceção — retorna null se a API não estiver acessível
+async function apiFetch(path, signal) {
+  try {
+    const r = await fetch(API_BASE + path, {
+      signal,
+      headers: { 'Accept': 'application/json' }
+    })
+    if (!r.ok) return null
+    return await r.json()
+  } catch {
+    return null
+  }
+}
+
+// Atualiza o indicador de status da API na sidebar
+function setApiStatus(online) {
+  const dot = document.getElementById('api-status-dot')
+  const lbl = document.getElementById('api-status-label')
+  if (!dot || !lbl) return
+  dot.style.background = online ? 'var(--success)' : 'var(--text-muted)'
+  dot.style.boxShadow = online ? '0 0 6px var(--success)' : 'none'
+  lbl.textContent = online ? 'API conectada' : 'API offline (modo local)'
+}
+
+// ── QUESTÕES DA API ──
+// Busca questões por subject e adiciona como novos cards após as questões estáticas
+async function loadApiQuestions(signal) {
+  const subjects = ['portugues','matematica','informatica','constitucional',
+    'administrativo','geografia','historia','ciencias']
+
+  await Promise.all(subjects.map(async subject => {
+    const res = await apiFetch(`/api/questions?subject=${subject}&limit=10`, signal)
+    if (!res?.data?.length) return
+
+    const section = document.getElementById(subject)
+    if (!section) return
+
+    let quizSection = section.querySelector('.quiz-section')
+    if (!quizSection) {
+      quizSection = document.createElement('div')
+      quizSection.className = 'quiz-section'
+      quizSection.innerHTML = '<h3>✏️ Questões da API</h3>'
+      section.appendChild(quizSection)
+    } else {
+      // Adiciona separador antes das questões da API
+      const sep = document.createElement('p')
+      sep.style.cssText = 'font-size:12px;color:var(--text-muted);margin:12px 0 8px;text-transform:uppercase;letter-spacing:.05em'
+      sep.textContent = '⬇ Questões carregadas da API'
+      quizSection.appendChild(sep)
+    }
+
+    res.data.forEach((q, i) => {
+      const uid = `api-${subject}-${i}-${q.id.slice(0,6)}`
+      const opts = (q.options || []).map((opt, idx) => {
+        const letra = String.fromCharCode(65 + idx)
+        return `<li data-opt="${letra})">${opt}</li>`
+      }).join('')
+
+      const card = document.createElement('div')
+      card.className = 'quiz-card'
+      card.innerHTML = `
+        <div class="quiz-card-body">
+          ${q.banca ? `<span class="quiz-banca">${q.banca.toUpperCase()}</span>` : ''}
+          ${q.source ? `<span class="quiz-banca" style="background:rgba(16,185,129,.1);color:var(--success);border:1px solid rgba(16,185,129,.3);margin-left:4px">${q.source}</span>` : ''}
+          <div class="quiz-question" style="margin-top:8px">${q.question}</div>
+          <ul class="quiz-options">${opts}</ul>
+          <button class="reveal-btn" onclick="revealAnswer('${uid}')">Ver resposta</button>
+          <div class="quiz-answer" id="${uid}">
+            <strong>Resposta: ${q.answer}</strong>${q.explanation ? ' — ' + q.explanation : ''}
+          </div>
+        </div>`
+      quizSection.appendChild(card)
+    })
+  }))
+}
+
+// ── ATUALIDADES DA API ──
+// Substitui o conteúdo do accordion de notícias se a API retornar dados
+async function loadApiAtualidades(signal) {
+  const res = await apiFetch('/api/atualidades?limit=30', signal)
+  if (!res?.data?.length) return
+
+  // Agrupar por categoria
+  const grupos = {}
+  res.data.forEach(n => {
+    const cat = n.categoria || 'geral'
+    if (!grupos[cat]) grupos[cat] = []
+    grupos[cat].push(n)
+  })
+
+  const body = document.getElementById('at-politica')
+  if (!body) return
+
+  // Marca que o conteúdo veio da API
+  const badge = document.createElement('span')
+  badge.style.cssText = 'font-size:11px;background:rgba(16,185,129,.15);color:var(--success);padding:2px 8px;border-radius:10px;margin-left:8px'
+  badge.textContent = '✓ API'
+  const header = document.querySelector('[onclick="toggleAccordion(\'at-politica\')"]')
+  if (header && !header.querySelector('.api-badge')) {
+    badge.className = 'api-badge'
+    header.insertBefore(badge, header.lastElementChild)
+  }
+
+  const ul = body.querySelector('ul')
+  if (!ul) return
+  ul.innerHTML = ''
+
+  Object.entries(grupos).forEach(([cat, items]) => {
+    const catLabel = { politica:'Política', economia:'Economia', tecnologia:'Tecnologia',
+      saude:'Saúde', 'meio-ambiente':'Meio Ambiente', concursos:'Concursos', geral:'Geral' }[cat] || cat
+    const li = document.createElement('li')
+    li.innerHTML = `<strong>${catLabel}:</strong>`
+    ul.appendChild(li)
+    items.slice(0, 4).forEach(n => {
+      const li2 = document.createElement('li')
+      li2.style.marginLeft = '12px'
+      li2.innerHTML = n.url
+        ? `<a href="${n.url}" target="_blank" rel="noopener" style="color:var(--accent-light);text-decoration:none">${n.titulo}</a> <span style="font-size:11px;color:var(--text-muted)">(${n.fonte})</span>`
+        : `${n.titulo} <span style="font-size:11px;color:var(--text-muted)">(${n.fonte})</span>`
+      ul.appendChild(li2)
+    })
+  })
+}
+
+// ── CONCURSOS DA API ──
+// Substitui/complementa a tabela de concursos abertos
+async function loadApiConcursos(signal) {
+  const res = await apiFetch('/api/concursos?limit=50', signal)
+  if (!res?.data?.length) return
+
+  const body = document.getElementById('conc-abertos')
+  if (!body) return
+
+  const tbody = body.querySelector('tbody')
+  if (!tbody) return
+
+  // Adiciona separador antes dos dados da API
+  const tr = document.createElement('tr')
+  tr.innerHTML = `<td colspan="3" style="background:rgba(16,185,129,.08);color:var(--success);font-size:12px;font-weight:600;text-align:center;padding:6px">⬇ Dados atualizados via API</td>`
+  tbody.appendChild(tr)
+
+  // Ordenar: abertos primeiro, depois por prazo
+  const sorted = [...res.data].sort((a, b) => {
+    if (a.status === 'aberto' && b.status !== 'aberto') return -1
+    if (b.status === 'aberto' && a.status !== 'aberto') return 1
+    return 0
+  })
+
+  sorted.forEach(c => {
+    const prazo = c.inscricao_ate ? new Date(c.inscricao_ate).toLocaleDateString('pt-BR') : '—'
+    const statusColor = c.status === 'aberto'
+      ? 'color:var(--success);font-weight:600'
+      : c.status === 'encerrado' ? 'color:var(--danger)' : 'color:var(--warning)'
+    const row = document.createElement('tr')
+    row.innerHTML = `
+      <td>${c.edital_url ? `<a href="${c.edital_url}" target="_blank" rel="noopener" style="color:var(--accent-light);text-decoration:none">${c.orgao}</a>` : c.orgao}</td>
+      <td>${c.vagas != null ? c.vagas.toLocaleString('pt-BR') : 'A definir'}</td>
+      <td style="${statusColor}">${c.status === 'aberto' ? '✅ Aberto' : c.status === 'encerrado' ? '❌ Encerrado' : '⏳ Previsto'} — ${prazo}</td>`
+    tbody.appendChild(row)
+  })
+}
+
+// ── INIT ──
+(function init() {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  document.querySelector('.theme-btn').textContent = savedTheme === 'dark' ? '🌙 Alternar tema' : '☀️ Alternar tema';
+  loadProgress();
+
+  // Inicia fetch da API com timeout de 5s — se falhar, não afeta nada
+  const ctrl = new AbortController()
+  setTimeout(() => ctrl.abort(), 5000)
+
+  apiFetch('/api/questions?limit=1', ctrl.signal).then(res => {
+    const online = res !== null
+    setApiStatus(online)
+    if (!online) return
+
+    // Carrega dados da API em paralelo sem bloquear o UI
+    loadApiQuestions(ctrl.signal)
+    loadApiAtualidades(ctrl.signal)
+    loadApiConcursos(ctrl.signal)
+  })
+
+  // Highlight active nav on scroll
+  const sections = document.querySelectorAll('.section[id]');
+  const navItems = document.querySelectorAll('.nav-item');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 80) current = sec.id;
+    });
+    navItems.forEach(item => {
+      const href = item.getAttribute('href');
+      item.classList.toggle('active', href === '#' + current);
+    });
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
